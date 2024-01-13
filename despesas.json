@@ -1,0 +1,6 @@
+{
+  "despesas": [
+    {"id": 1, "dia": "2022-01-01", "valor": 50.0, "observacao": "Almoço"},
+    {"id": 2, "dia": "2022-01-05", "valor": 30.0, "observacao": "Transporte"}
+  ]
+}
