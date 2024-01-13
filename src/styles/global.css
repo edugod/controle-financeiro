@@ -1,11 +1,14 @@
 *, *::before, *::after {
     box-sizing: border-box;
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
-    font: inherit;
-}
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    scroll-behavior: smooth;
+  }
 
 body {
     min-height: 100vh;
