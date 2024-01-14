@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import DatePicker from 'react-datepicker'
 
 const DespesaForm = ({ onAddDespesa }) => {
-	const [dia, setDia] = useState(new Date())
+	const [dia, setDia] = useState('')
 	const [valor, setValor] = useState('')
 	const [observacao, setObservacao] = useState('')
+
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -18,6 +18,7 @@ const DespesaForm = ({ onAddDespesa }) => {
 		onAddDespesa(novaDespesa)
 
 		// Limpar os campos do formulário após adicionar a despesa
+		console.log(dia)
 		setDia('')
 		setValor('')
 		setObservacao('')
@@ -27,14 +28,13 @@ const DespesaForm = ({ onAddDespesa }) => {
 		<form onSubmit={handleSubmit}>
 			<label>
 				Dia:
-				<DatePicker
-					selected={dia}
-					onChange={(dia) => setDia(dia)}
-					isClearable
-					placeholderText='I have been cleared!'
+				<input
+					type='date'
+					value={dia}
+					onChange={(e) => setDia(e.target.value)}
+					max='2024-12-31'
 				/>
 			</label>
-			
 			<label>
 				Valor:
 				<input type='number' value={valor} onChange={(e) => setValor(e.target.value)} />
