@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import ReactInputMask from 'react-input-mask'
+import React, { useEffect, useState } from 'react'
+import DatePicker from 'react-datepicker'
+
 const DespesaForm = ({ onAddDespesa }) => {
-	const [dia, setDia] = useState('')
+	const [dia, setDia] = useState(new Date())
 	const [valor, setValor] = useState('')
 	const [observacao, setObservacao] = useState('')
-  console.log('dia :>> ', dia);
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -27,14 +27,14 @@ const DespesaForm = ({ onAddDespesa }) => {
 		<form onSubmit={handleSubmit}>
 			<label>
 				Dia:
-				<ReactInputMask
-					mask='31/12/2024'
-					maskChar=''
-					value={dia}
-					onChange={(e) => setDia(e.target.value)}
-					placeholder='DD/MM/AAAA'
+				<DatePicker
+					selected={dia}
+					onChange={(dia) => setDia(dia)}
+					isClearable
+					placeholderText='I have been cleared!'
 				/>
 			</label>
+			
 			<label>
 				Valor:
 				<input type='number' value={valor} onChange={(e) => setValor(e.target.value)} />
