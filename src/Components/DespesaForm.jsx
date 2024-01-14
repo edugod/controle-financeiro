@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import ReactInputMask from 'react-input-mask'
-import MaskedInput from './MaskedInput'
 const DespesaForm = ({ onAddDespesa }) => {
 	const [dia, setDia] = useState('')
 	const [valor, setValor] = useState('')
 	const [observacao, setObservacao] = useState('')
-  const [cpf, setCpf] = useState('')
+  console.log('dia :>> ', dia);
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -27,18 +26,14 @@ const DespesaForm = ({ onAddDespesa }) => {
 	return (
 		<form onSubmit={handleSubmit}>
 			<label>
-				{/* Dia:
+				Dia:
 				<ReactInputMask
-					mask='99/99/2024'
+					mask='31/12/2024'
 					maskChar=''
 					value={dia}
 					onChange={(e) => setDia(e.target.value)}
 					placeholder='DD/MM/AAAA'
-				/> */}
-        <MaskedInput 
-        value={cpf}
-        onChange={(e) => setCpf(e.target.value)}/>
-        <button onClick={() => setCpf('')}>Limpar</button>
+				/>
 			</label>
 			<label>
 				Valor:
