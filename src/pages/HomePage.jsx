@@ -29,6 +29,7 @@ const HomePage = () => {
   const handleAddDespesa = (novaDespesa) => {
     setDespesas([...despesas, { id: despesas.length + 1, ...novaDespesa }]);
     // Atualiza o saldo com base na nova despesa
+    console.log('Saldo :>> ', saldo);
     setSaldo(saldo - novaDespesa.valor);
   };
 

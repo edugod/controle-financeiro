@@ -8,6 +8,7 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
     scroll-behavior: smooth;
+    background: rgb(41, 40, 40);
   }
 
 body {
@@ -17,3 +18,4 @@ img, picture, svg, video{
     display: block;
     max-width: 100%;
 }
+
