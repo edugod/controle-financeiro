@@ -24,7 +24,7 @@ const HomePage = () => {
     };
 
     fetchDespesas();
-  }, []);
+  }, [0]);
 
   const handleAddDespesa = (novaDespesa) => {
     setDespesas([...despesas, { id: despesas.length + 1, ...novaDespesa }]);

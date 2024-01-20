@@ -1,43 +1,54 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 const DespesaForm = ({ onAddDespesa }) => {
 	const [dia, setDia] = useState('')
 	const [valor, setValor] = useState('')
 	const [observacao, setObservacao] = useState('')
+	const [isDespesa, setIsDespesa] = useState(true)
 
-
-	const handleSubmit = (e) => {
-		e.preventDefault()
-
+	const handleValorClick = () => {
+		// Toggle entre despesa e entrada ao clicar no campo de valor
+		setIsDespesa((prev) => !prev);
+	  };
+	
+	  const handleSubmit = (e) => {
+		e.preventDefault();
+	
+		const clearForm = () => {
+		  setDia('');
+		  setValor('');
+		  setObservacao('');
+		};
+	
+		// Verifica se é despesa ou entrada com base na variável isDespesa
+		const valorNumerico = isDespesa ? -Math.abs(parseFloat(valor)) : Math.abs(parseFloat(valor));
+	
 		const novaDespesa = {
-			dia,
-			valor: parseFloat(valor) * -1,
-			observacao,
-		}
-
-		onAddDespesa(novaDespesa)
-
+		  dia,
+		  valor: valorNumerico,
+		  observacao,
+		};
+	
+		onAddDespesa(novaDespesa);
+	
 		// Limpar os campos do formulário após adicionar a despesa
-		console.log(dia)
-		setDia('')
-		setValor('')
-		setObservacao('')
-	}
+		clearForm();
+	  };
 
 	return (
 		<form onSubmit={handleSubmit}>
 			<label>
 				Dia:
-				<input
-					type='date'
-					value={dia}
-					onChange={(e) => setDia(e.target.value)}
-					max='2024-12-31'
-				/>
+				<input type='date' value={dia} onChange={(e) => setDia(e.target.value)} max='2024-12-31' />
 			</label>
 			<label>
-				Valor:
-				<input type='number' value={valor} onChange={(e) => setValor(e.target.value)} />
+				<span onClick={handleValorClick}>{isDespesa ? 'Despesa:' : 'Entrada:'}</span>
+				<input
+					type='number'
+					value={valor}
+					onChange={(e) => setValor(e.target.value)}
+					
+				/>
 			</label>
 			<label>
 				Observação:

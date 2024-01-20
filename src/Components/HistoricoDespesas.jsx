@@ -7,7 +7,7 @@ const HistoricoDespesas = ({ despesas }) => {
       <ul>
         {despesas.map((despesa) => (
           <li key={despesa.id}>
-            <strong>Dia:</strong> {despesa.dia} | <strong>Valor:</strong> R$ {despesa.valor.toFixed(2)} | <strong>Observação:</strong> {despesa.observacao}
+           Dia: {despesa.dia} | Valor: R$ {despesa.valor.toFixed(2)} | Observação: {despesa.observacao}
           </li>
         ))}
       </ul>
