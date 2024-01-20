@@ -24,15 +24,17 @@ const HomePage = () => {
     };
 
     fetchDespesas();
-  }, [0]);
+  }, []);
 
   const handleAddDespesa = (novaDespesa) => {
     setDespesas([...despesas, { id: despesas.length + 1, ...novaDespesa }]);
     // Atualiza o saldo com base na nova despesa
-    console.log('Saldo :>> ', saldo);
+    console.log('despesas :>> ', despesas);
     setSaldo(saldo - novaDespesa.valor);
-  };
+    console.log('deposi de add :>> ', despesas);
 
+  };
+  
   return (
     <div>
       <DespesaForm onAddDespesa={handleAddDespesa} />
