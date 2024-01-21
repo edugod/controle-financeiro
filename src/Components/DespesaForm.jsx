@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import despesaService from '../controllers/despesas'
 
 const DespesaForm = ({ onAddDespesa }) => {
 	const [dia, setDia] = useState('')
@@ -8,32 +9,41 @@ const DespesaForm = ({ onAddDespesa }) => {
 
 	const handleValorClick = () => {
 		// Toggle entre despesa e entrada ao clicar no campo de valor
-		setIsDespesa((prev) => !prev);
-	  };
-	
-	  const handleSubmit = (e) => {
-		e.preventDefault();
-	
-		const clearForm = () => {
-		  setDia('');
-		  setValor('');
-		  setObservacao('');
-		};
-	
+		setIsDespesa((prev) => !prev)
+	}
+
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+
 		// Verifica se é despesa ou entrada com base na variável isDespesa
-		const valorNumerico = isDespesa ? -Math.abs(parseFloat(valor)) : Math.abs(parseFloat(valor));
-	
+		const valorNumerico = isDespesa ? -Math.abs(parseFloat(valor)) : Math.abs(parseFloat(valor))
+
 		const novaDespesa = {
-		  dia,
-		  valor: valorNumerico,
-		  observacao,
-		};
-	
-		onAddDespesa(novaDespesa);
-	
-		// Limpar os campos do formulário após adicionar a despesa
-		clearForm();
-	  };
+			dia,
+			valor: valorNumerico,
+			observacao,
+		}
+
+		try {
+			// Call the create function from your service to add the new despesa to MongoDB
+			await despesaService.create(novaDespesa)
+
+			// Trigger any callback passed via props
+			onAddDespesa(novaDespesa)
+
+			// Limpar os campos do formulário após adicionar a despesa
+			clearForm()
+		} catch (error) {
+			console.error('Error adding despesa:', error)
+			// Handle the error (e.g., show an error message to the user)
+		}
+	}
+
+	const clearForm = () => {
+		setDia('')
+		setValor('')
+		setObservacao('')
+	}
 
 	return (
 		<form onSubmit={handleSubmit}>
@@ -43,12 +53,7 @@ const DespesaForm = ({ onAddDespesa }) => {
 			</label>
 			<label>
 				<span onClick={handleValorClick}>{isDespesa ? 'Despesa:' : 'Entrada:'}</span>
-				<input
-					type='number'
-					value={valor}
-					onChange={(e) => setValor(e.target.value)}
-					
-				/>
+				<input type='number' value={valor} onChange={(e) => setValor(e.target.value)} />
 			</label>
 			<label>
 				Observação:

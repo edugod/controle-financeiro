@@ -14,9 +14,12 @@
 
 
 [ ] 4. Conexão com MongoDB:
-[ ]     4.1 Configurar um servidor backend com Node.js e Express
-[ ]     4.2 Conectar o backend ao MongoDB
-[ ]     4.3 Implementar APIs CRUD para interagir com o MongoDB
+[X]     4.1 Configurar um servidor backend com Node.js e Express
+[X]     4.2 Conectar o backend ao MongoDB
+[X]     4.3 Configurar o nodemon
+[x]     4.4 Instalar o Axios
+[ ]     4.5 Fazer a conexão Front <=> Back
+[ ]     4.4 Implementar APIs CRUD para interagir com o MongoDB
 
 [ ] 5. Integração Frontend-Backend:
 [ ]     5.1 Integração de chamadas de API no frontend
