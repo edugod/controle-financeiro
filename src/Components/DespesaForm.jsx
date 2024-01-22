@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import despesaService from '../controllers/despesas'
+import moment from 'moment'
 
 const DespesaForm = ({ onAddDespesa }) => {
 	const [dia, setDia] = useState('')
@@ -19,7 +20,7 @@ const DespesaForm = ({ onAddDespesa }) => {
 		const valorNumerico = isDespesa ? -Math.abs(parseFloat(valor)) : Math.abs(parseFloat(valor))
 
 		const novaDespesa = {
-			dia,
+			dia: moment(dia).format('L'),
 			valor: valorNumerico,
 			observacao,
 		}
