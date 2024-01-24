@@ -66,3 +66,5 @@ const DespesaForm = ({ onAddDespesa }) => {
 }
 
 export default DespesaForm
+como eu vou fazer para conseguir formatar a data adequadamente? hmmm
+eu poderia fazer ao renderizar o input com o new Date() e então ao clicar ele zerar o input.
