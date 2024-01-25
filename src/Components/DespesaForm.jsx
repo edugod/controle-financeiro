@@ -28,15 +28,11 @@ const DespesaForm = ({ onAddDespesa }) => {
 		try {
 			// Call the create function from your service to add the new despesa to MongoDB
 			await despesaService.create(novaDespesa)
-
-			// Trigger any callback passed via props
+			
 			onAddDespesa(novaDespesa)
-
-			// Limpar os campos do formulário após adicionar a despesa
 			clearForm()
 		} catch (error) {
 			console.error('Error adding despesa:', error)
-			// Handle the error (e.g., show an error message to the user)
 		}
 	}
 
@@ -66,5 +62,5 @@ const DespesaForm = ({ onAddDespesa }) => {
 }
 
 export default DespesaForm
-como eu vou fazer para conseguir formatar a data adequadamente? hmmm
-eu poderia fazer ao renderizar o input com o new Date() e então ao clicar ele zerar o input.
+
+// eu poderia fazer ao renderizar o input com o new Date() e então ao clicar ele zerar o input.
