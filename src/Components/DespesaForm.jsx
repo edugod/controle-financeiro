@@ -1,66 +1,70 @@
-import React, { useState } from 'react'
-import despesaService from '../controllers/despesas'
-import moment from 'moment'
+import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import despesaService from '../controllers/despesas';
 
 const DespesaForm = ({ onAddDespesa }) => {
-	const [dia, setDia] = useState('')
-	const [valor, setValor] = useState('')
-	const [observacao, setObservacao] = useState('')
-	const [isDespesa, setIsDespesa] = useState(true)
+  const [dia, setDia] = useState(new Date());
+  const [valor, setValor] = useState('');
+  const [observacao, setObservacao] = useState('');
+  const [isDespesa, setIsDespesa] = useState(true);
 
-	const handleValorClick = () => {
-		// Toggle entre despesa e entrada ao clicar no campo de valor
-		setIsDespesa((prev) => !prev)
-	}
+  const handleValorClick = () => {
+    // Toggle entre despesa e entrada ao clicar no campo de valor
+    setIsDespesa((prev) => !prev);
+  };
 
-	const handleSubmit = async (e) => {
-		e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-		// Verifica se é despesa ou entrada com base na variável isDespesa
-		const valorNumerico = isDespesa ? -Math.abs(parseFloat(valor)) : Math.abs(parseFloat(valor))
+    // Verifica se é despesa ou entrada com base na variável isDespesa
+    const valorNumerico = isDespesa ? -Math.abs(parseFloat(valor)) : Math.abs(parseFloat(valor));
 
-		const novaDespesa = {
-			dia: moment(dia).format('L'),
-			valor: valorNumerico,
-			observacao,
-		}
+    const novaDespesa = {
+      dia: dia.toLocaleDateString('pt-BR'), // Formatando a data para dd/mm/yyyy
+      valor: valorNumerico,
+      observacao,
+    };
 
-		try {
-			// Call the create function from your service to add the new despesa to MongoDB
-			await despesaService.create(novaDespesa)
-			
-			onAddDespesa(novaDespesa)
-			clearForm()
-		} catch (error) {
-			console.error('Error adding despesa:', error)
-		}
-	}
+    try {
+      // Chame a função create do seu serviço para adicionar a nova despesa ao MongoDB
+      await despesaService.create(novaDespesa);
 
-	const clearForm = () => {
-		setDia('')
-		setValor('')
-		setObservacao('')
-	}
+      onAddDespesa(novaDespesa);
+      clearForm();
+    } catch (error) {
+      console.error('Error adding despesa:', error);
+    }
+  };
 
-	return (
-		<form onSubmit={handleSubmit}>
-			<label>
-				Dia:
-				<input type='date' value={dia} onChange={(e) => setDia(e.target.value)} max='2024-12-31' />
-			</label>
-			<label>
-				<span onClick={handleValorClick}>{isDespesa ? 'Despesa:' : 'Entrada:'}</span>
-				<input type='number' value={valor} onChange={(e) => setValor(e.target.value)} />
-			</label>
-			<label>
-				Observação:
-				<input type='text' value={observacao} onChange={(e) => setObservacao(e.target.value)} />
-			</label>
-			<button type='submit'>Adicionar Despesa</button>
-		</form>
-	)
-}
+  const clearForm = () => {
+    setDia(new Date());
+    setValor('');
+    setObservacao('');
+  };
 
-export default DespesaForm
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Dia:
+        <DatePicker
+          selected={dia}
+          onChange={(date) => setDia(date)}
+          dateFormat="dd/MM/yyyy"
+          maxDate={new Date(2024, 11, 31)}
+        />
+      </label>
+      <label>
+        <span onClick={handleValorClick}>{isDespesa ? 'Despesa:' : 'Entrada:'}</span>
+        <input type='number' value={valor} onChange={(e) => setValor(e.target.value)} />
+      </label>
+      <label>
+        Observação:
+        <input type='text' value={observacao} onChange={(e) => setObservacao(e.target.value)} />
+      </label>
+      <button type='submit'>Adicionar Despesa</button>
+    </form>
+  );
+};
 
-// eu poderia fazer ao renderizar o input com o new Date() e então ao clicar ele zerar o input.
+export default DespesaForm;

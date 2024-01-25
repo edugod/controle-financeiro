@@ -13,13 +13,14 @@
 [X]    3.2 Tratar pra enviar valor positivo ou negativo.
 
 
-[ ] 4. Conexão com MongoDB:
+[X] 4. Conexão com MongoDB:
 [X]     4.1 Configurar um servidor backend com Node.js e Express
 [X]     4.2 Conectar o backend ao MongoDB
 [X]     4.3 Configurar o nodemon
 [x]     4.4 Instalar o Axios
-[ ]     4.5 Fazer a conexão Front <=> Back
-[ ]     4.4 Implementar APIs CRUD para interagir com o MongoDB
+[X]     4.5 Fazer a conexão Front <=> Back
+[X]     4.4 Implementar APIs CRUD para interagir com o MongoDB:
+[X]     4.4.1 Implementar Create e Delete
 
 [ ] 5. Integração Frontend-Backend:
 [ ]     5.1 Integração de chamadas de API no frontend
@@ -29,6 +30,7 @@
 [ ]     6.1 Adição de estilos CSS
 [ ]     6.2 Utilização de bibliotecas de estilos, se necessário
 [ ]     6.3 Garantir que o layout seja responsivo
+tirar a porra da seta no valor
  
 [ ] 7. Autenticação e Autorização:
 [ ]     7.1 Implementação de um sistema de login
