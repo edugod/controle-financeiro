@@ -9,25 +9,19 @@ const DespesaForm = ({ onAddDespesa }) => {
   const [observacao, setObservacao] = useState('');
   const [isDespesa, setIsDespesa] = useState(true);
 
-  const handleValorClick = () => {
-    // Toggle entre despesa e entrada ao clicar no campo de valor
-    setIsDespesa((prev) => !prev);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Verifica se é despesa ou entrada com base na variável isDespesa
     const valorNumerico = isDespesa ? -Math.abs(parseFloat(valor)) : Math.abs(parseFloat(valor));
-
+    console.log('isDespesa :>> ', isDespesa);
     const novaDespesa = {
-      dia: dia.toLocaleDateString('pt-BR'), // Formatando a data para dd/mm/yyyy
+      dia: dia.toLocaleDateString('pt-BR'),
       valor: valorNumerico,
       observacao,
     };
 
     try {
-      // Chame a função create do seu serviço para adicionar a nova despesa ao MongoDB
+      // Chame a função create do meu serviço para adicionar a nova despesa ao MongoDB
       await despesaService.create(novaDespesa);
 
       onAddDespesa(novaDespesa);
@@ -55,7 +49,7 @@ const DespesaForm = ({ onAddDespesa }) => {
         />
       </label>
       <label>
-        <span onClick={handleValorClick}>{isDespesa ? 'Despesa:' : 'Entrada:'}</span>
+        <span onClick={() => setIsDespesa((prev) => !prev)}>{isDespesa ? 'Despesa:' : 'Entrada:'}</span>
         <input type='number' value={valor} onChange={(e) => setValor(e.target.value)} />
       </label>
       <label>

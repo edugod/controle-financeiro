@@ -13,7 +13,6 @@ const HistoricoDespesas = ({ despesas, setDespesas }) => {
 
   const confirmDelete = async () => {
     try {
-      // Chama a função de delete no serviço
       await despesaService.deleteDespesa(deletingDespesaId);
 
       // Atualiza o estado para refletir a exclusão no frontend
@@ -23,13 +22,11 @@ const HistoricoDespesas = ({ despesas, setDespesas }) => {
       setShowDeleteModal(false);
       setDeletingDespesaId(null);
     } catch (error) {
-      // Lida com erros
       console.error('Erro ao deletar despesa:', error);
     }
   };
 
   const cancelDelete = () => {
-    // Fecha o modal de confirmação
     setShowDeleteModal(false);
     setDeletingDespesaId(null);
   };

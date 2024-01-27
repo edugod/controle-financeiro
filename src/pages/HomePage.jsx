@@ -22,7 +22,7 @@ const HomePage = () => {
 
 	// useEffect para calcular o saldo com base nas despesas
 	useEffect(() => {
-		const saldoTotal = despesas.reduce((total, despesa) => total - despesa.valor, 0)
+		const saldoTotal = despesas.reduce((total, despesa) => total + despesa.valor, 0)
 		setSaldo(saldoTotal)
 	}, [despesas])
 
@@ -40,4 +40,3 @@ const HomePage = () => {
 }
 
 export default HomePage
-hj vou ficar devendo

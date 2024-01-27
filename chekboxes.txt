@@ -12,8 +12,8 @@
 [X]    3.1 Tratar quando é despesa e quando é entrada
 [X]    3.2 Tratar pra enviar valor positivo ou negativo.
 [x]    3.3 Tratar para a data seja em formato dd/mm/yyyy
-[ ]    3.4 Tratar para o saldo ser calculado quando for renderizado a aplicação.
-
+[x]    3.4 Tratar para o saldo ser calculado quando for renderizado a aplicação.
+[x]    3.5 Tratar para a despesa ser adicionado como negativa e + quando for salário
 
 [X] 4. Conexão com MongoDB:
 [X]     4.1 Configurar um servidor backend com Node.js e Express
