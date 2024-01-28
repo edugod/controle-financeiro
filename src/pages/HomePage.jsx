@@ -7,7 +7,9 @@ import despesaService from '../controllers/despesas'
 const HomePage = () => {
 	const [despesas, setDespesas] = useState([])
 	const [saldo, setSaldo] = useState(0)
+	
 
+	console.log(despesas)
 	// useEffect para carregar dados iniciais
 	useEffect(() => {
 		despesaService
