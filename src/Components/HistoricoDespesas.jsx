@@ -5,9 +5,6 @@ const HistoricoDespesas = ({ despesas, setDespesas }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deletingDespesaId, setDeletingDespesaId] = useState(null);
 
-  // console.log('despesas :>> ', despesas);
-  // const despesasOrdenadas = [...despesas].sort((a, b) => new Date(a.dia) - new Date(b.dia));
-  // console.log('object :>> ', object);
 
 
   const handleDelete = async (despesaId) => {

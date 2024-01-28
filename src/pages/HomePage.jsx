@@ -7,9 +7,7 @@ import despesaService from '../controllers/despesas'
 const HomePage = () => {
 	const [despesas, setDespesas] = useState([])
 	const [saldo, setSaldo] = useState(0)
-	
 
-	console.log(despesas)
 	// useEffect para carregar dados iniciais
 	useEffect(() => {
 		despesaService
@@ -34,8 +32,8 @@ const HomePage = () => {
 
 	return (
 		<div>
+			<SaldoMensal saldo={saldo} despesas={despesas} />
 			<DespesaForm onAddDespesa={handleAddDespesa} />
-			<SaldoMensal saldo={saldo} />
 			<HistoricoDespesas despesas={despesas} setDespesas={setDespesas} />
 		</div>
 	)
