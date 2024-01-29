@@ -1,15 +1,30 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setFilter } from '../reducers/filterReducer'
 
 const SaldoMensal = ({ saldo, despesas }) => {
-	const [mesSelecionado, setMesSelecionado] = useState('')
+	const dispatch = useDispatch()
+	const mesSelecionado = useSelector((state) => state.filter)
 
 	const filtrarPorMes = (mes) => {
+		dispatch(setFilter(mes))
+
 		// Lógica para filtrar os dados pelo mês
-		// Exemplo: Filtrar por mês "01" para janeiro
-		const dadosFiltrados = despesas.filter((item) => item.dia.split('/')[1] === mes)
+		const dadosFiltrados = despesas.filter((despesa) => {
+			const mesDespesa = despesa.dia.split('/')[1]
+			return mes === '00' || mesDespesa === mes
+		})
+
 		console.log('dadosFiltrados :>> ', dadosFiltrados)
-		console.log(`escolhido o mÊs ${mes}`)
+		console.log(`Escolhido o mês ${mes}`)
 	}
+
+	const meses = [
+		{ value: '00', label: 'Todos os Meses' },
+		{ value: '01', label: 'Janeiro' },
+		{ value: '02', label: 'Fevereiro' },
+		// Adicione mais opções para os outros meses, se necessário
+	]
 
 	return (
 		<div>
@@ -18,13 +33,14 @@ const SaldoMensal = ({ saldo, despesas }) => {
 				<select
 					value={mesSelecionado}
 					onChange={(e) => {
-						setMesSelecionado(e.target.value)
 						filtrarPorMes(e.target.value)
-					}}>
-					<option value='00'>Todos os Meses</option>
-					<option value='01'>Janeiro</option>
-					<option value='02'>Fevereiro</option>
-					{/* Adicione mais opções para os outros meses, se necessário */}
+					}}
+				>
+					{meses.map((mes) => (
+						<option key={mes.value} value={mes.value}>
+							{mes.label}
+						</option>
+					))}
 				</select>
 			</div>
 			<p>{saldo}</p>
