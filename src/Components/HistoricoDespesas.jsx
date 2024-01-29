@@ -65,3 +65,6 @@ const HistoricoDespesas = ({ despesas, setDespesas }) => {
 }
 
 export default HistoricoDespesas
+
+
+nao esta dando muito certo a minha ideia
