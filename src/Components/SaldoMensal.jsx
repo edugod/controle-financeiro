@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setFilter } from '../reducers/filterReducer'
 
 const SaldoMensal = ({ saldo, despesas }) => {
+	
 	const dispatch = useDispatch()
 	const mesSelecionado = useSelector((state) => state.filter)
 
@@ -23,6 +24,7 @@ const SaldoMensal = ({ saldo, despesas }) => {
 		{ value: '00', label: 'Todos os Meses' },
 		{ value: '01', label: 'Janeiro' },
 		{ value: '02', label: 'Fevereiro' },
+		{ value: '03', label: 'Março' },
 		// Adicione mais opções para os outros meses, se necessário
 	]
 

@@ -39,11 +39,15 @@ const HistoricoDespesas = ({ despesas, setDespesas }) => {
 		}
 	}
 
+	const despesasFiltradas = despesas.filter((despesa) => despesa.dia.includes(`/${mesSelecionado}/`))
+	console.log('despesasFiltradas :>> ', despesasFiltradas)
+
+
 	return (
 		<div>
 			<h2>Histórico de Despesas</h2>
 			<ul>
-				{despesas.map((despesa) => (
+				{(mesSelecionado === '00' ? despesas : despesasFiltradas).map((despesa) => (
 					<li key={despesa.id}>
 						Dia: {despesa.dia} | Valor: R$ {despesa.valor.toFixed(2)} | Observação:{' '}
 						{despesa.observacao}
@@ -65,6 +69,3 @@ const HistoricoDespesas = ({ despesas, setDespesas }) => {
 }
 
 export default HistoricoDespesas
-
-
-nao esta dando muito certo a minha ideia
