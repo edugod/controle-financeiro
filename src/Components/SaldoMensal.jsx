@@ -1,22 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setFilter } from '../reducers/filterReducer'
 
-const SaldoMensal = ({ saldo, despesas }) => {
-	
+const SaldoMensal = ({ despesas }) => {
+	const [saldo, setSaldo] = useState(0)
+
 	const dispatch = useDispatch()
 	const mesSelecionado = useSelector((state) => state.filter)
 
+	const despesasFiltradas = despesas.filter((despesa) => despesa.dia.includes(`/${mesSelecionado}/`))
+
+	// useEffect para calcular o saldo com base nas despesas filtradas pelo mês selecionado
+	useEffect(() => {
+		const despesasParaCalcularSaldo = mesSelecionado === '00' ? despesas : despesasFiltradas;
+		const saldoTotal = despesasParaCalcularSaldo.reduce((total, despesa) => total + despesa.valor, 0);
+		setSaldo(saldoTotal);
+	  }, [mesSelecionado, despesas, despesasFiltradas]);
+	  
+
 	const filtrarPorMes = (mes) => {
 		dispatch(setFilter(mes))
-
-		// Lógica para filtrar os dados pelo mês
-		const dadosFiltrados = despesas.filter((despesa) => {
-			const mesDespesa = despesa.dia.split('/')[1]
-			return mes === '00' || mesDespesa === mes
-		})
-
-		console.log('dadosFiltrados :>> ', dadosFiltrados)
 		console.log(`Escolhido o mês ${mes}`)
 	}
 
@@ -25,7 +28,6 @@ const SaldoMensal = ({ saldo, despesas }) => {
 		{ value: '01', label: 'Janeiro' },
 		{ value: '02', label: 'Fevereiro' },
 		{ value: '03', label: 'Março' },
-		// Adicione mais opções para os outros meses, se necessário
 	]
 
 	return (

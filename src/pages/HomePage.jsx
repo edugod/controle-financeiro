@@ -6,7 +6,6 @@ import despesaService from '../controllers/despesas'
 
 const HomePage = () => {
 	const [despesas, setDespesas] = useState([])
-	const [saldo, setSaldo] = useState(0)
 
 	// useEffect para carregar dados iniciais
 	useEffect(() => {
@@ -20,11 +19,6 @@ const HomePage = () => {
 			})
 	}, [])
 
-	// useEffect para calcular o saldo com base nas despesas
-	useEffect(() => {
-		const saldoTotal = despesas.reduce((total, despesa) => total + despesa.valor, 0)
-		setSaldo(saldoTotal)
-	}, [despesas])
 
 	const handleAddDespesa = (novaDespesa) => {
 		setDespesas([...despesas, { id: despesas.length + 1, ...novaDespesa }])
@@ -33,7 +27,7 @@ const HomePage = () => {
 	return (
 		<div>
 			<DespesaForm onAddDespesa={handleAddDespesa} />
-			<SaldoMensal saldo={saldo} despesas={despesas}/>
+			<SaldoMensal despesas={despesas}/>
 			<HistoricoDespesas despesas={despesas} setDespesas={setDespesas} />
 		</div>
 	)
