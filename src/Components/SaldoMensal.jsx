@@ -4,19 +4,18 @@ import { setFilter } from '../reducers/filterReducer'
 
 const SaldoMensal = ({ despesas }) => {
 	const [saldo, setSaldo] = useState(0)
-
 	const dispatch = useDispatch()
 	const mesSelecionado = useSelector((state) => state.filter)
 
 	const despesasFiltradas = despesas.filter((despesa) => despesa.dia.includes(`/${mesSelecionado}/`))
 
-	// useEffect para calcular o saldo com base nas despesas filtradas pelo mês selecionado
 	useEffect(() => {
-		const despesasParaCalcularSaldo = mesSelecionado === '00' ? despesas : despesasFiltradas;
-		const saldoTotal = despesasParaCalcularSaldo.reduce((total, despesa) => total + despesa.valor, 0);
-		setSaldo(saldoTotal);
-	  }, [mesSelecionado, despesas, despesasFiltradas]);
-	  
+		const despesasParaCalcularSaldo = mesSelecionado === '00' ? despesas : despesasFiltradas
+		const saldoTotal = despesasParaCalcularSaldo.reduce((total, despesa) => total + despesa.valor, 0)
+		setSaldo(saldoTotal)
+	}, [mesSelecionado, despesas, despesasFiltradas])
+	//essas 3 [] indicam que sempre que um deles sofrer alguma alteração
+	//irá novamente fazer a renderização
 
 	const filtrarPorMes = (mes) => {
 		dispatch(setFilter(mes))
@@ -34,15 +33,10 @@ const SaldoMensal = ({ despesas }) => {
 		<div>
 			<h2>Saldo do Mês</h2>
 			<div>
-				<select
-					value={mesSelecionado}
-					onChange={(e) => {
-						filtrarPorMes(e.target.value)
-					}}
-				>
-					{meses.map((mes) => (
-						<option key={mes.value} value={mes.value}>
-							{mes.label}
+				<select value={mesSelecionado} onChange={(e) => filtrarPorMes(e.target.value)}>
+					{meses.map(({ value, label }) => (
+						<option key={value} value={value}>
+							{label}
 						</option>
 					))}
 				</select>
