@@ -31,7 +31,7 @@ const SaldoMensal = ({ despesas }) => {
 
 	return (
 		<div>
-			<h2>Saldo do Mês</h2>
+			<h2>{mesSelecionado == '00' ? 'Saldo Anual:' : `Saldo No Mês:`}</h2>
 			<div>
 				<select value={mesSelecionado} onChange={(e) => filtrarPorMes(e.target.value)}>
 					{meses.map(({ value, label }) => (
