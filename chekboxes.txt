@@ -14,8 +14,8 @@
 [x]    3.3 Tratar para a data seja em formato dd/mm/yyyy
 [x]    3.4 Tratar para o saldo ser calculado quando for renderizado a aplicação.
 [x]    3.5 Tratar para a despesa ser adicionado como negativa e + quando for salário
-[ ]    3.6 colocar um select para poder filtrar por mês + ano
-[ ]    3.7 colocar o historico de despesas em ordem crescente de data. (sort)
+[X]    3.6 colocar um select para poder filtrar por mês + ano
+[X]    3.7 colocar o historico de despesas em ordem crescente de data. (sort)
 
 [X] 4. Conexão com MongoDB:
 [X]     4.1 Configurar um servidor backend com Node.js e Express

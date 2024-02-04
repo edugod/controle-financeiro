@@ -41,7 +41,7 @@ const SaldoMensal = ({ despesas }) => {
 					))}
 				</select>
 			</div>
-			<p>{saldo}</p>
+			<p>{saldo.toFixed(2)}</p>
 		</div>
 	)
 }
