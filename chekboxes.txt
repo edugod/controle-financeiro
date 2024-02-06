@@ -17,6 +17,12 @@
 [X]    3.6 colocar um select para poder filtrar por mês + ano
 [X]    3.7 colocar o historico de despesas em ordem crescente de data. (sort)
 
+[] X. Implementação de login
+[X]     X.1 Estabelecer se deve ser uma página ou um popup
+[X]     X.2 estudar possibilidades de como fazer a autenticação de login
+[]      X.1 Estabelecer se deve ser uma página ou um popup
+[] será que isso não pode ser feito mais tarde?
+
 [X] 4. Conexão com MongoDB:
 [X]     4.1 Configurar um servidor backend com Node.js e Express
 [X]     4.2 Conectar o backend ao MongoDB
