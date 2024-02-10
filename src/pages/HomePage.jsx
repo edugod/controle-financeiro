@@ -11,14 +11,9 @@ const HomePage = () => {
 	useEffect(() => {
 		despesaService
 			.getAll()
-			.then((response) => {
-				setDespesas(response.data)
-			})
-			.catch((error) => {
-				console.error('Error fetching despesas:', error)
-			})
+			.then((response) => {setDespesas(response.data)})
+			.catch((error) => {console.error('Error fetching despesas:', error)})
 	}, [])
-
 
 	const handleAddDespesa = (novaDespesa) => {
 		setDespesas([...despesas, { id: despesas.length + 1, ...novaDespesa }])
@@ -27,7 +22,7 @@ const HomePage = () => {
 	return (
 		<div>
 			<DespesaForm onAddDespesa={handleAddDespesa} />
-			<SaldoMensal despesas={despesas}/>
+			<SaldoMensal despesas={despesas} />
 			<HistoricoDespesas despesas={despesas} setDespesas={setDespesas} />
 		</div>
 	)

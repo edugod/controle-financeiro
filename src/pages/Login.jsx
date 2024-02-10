@@ -63,5 +63,3 @@ const Login = () => {
 };
 
 export default Login;
-
-será que isso naõ pode ser feito depois?
