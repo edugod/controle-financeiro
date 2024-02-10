@@ -1,64 +1,74 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import despesaService from '../controllers/despesas';
+import React, { useState } from 'react'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import despesaService from '../controllers/despesas'
 
 const DespesaForm = ({ onAddDespesa }) => {
-  const [dia, setDia] = useState(new Date());
-  const [valor, setValor] = useState('');
-  const [observacao, setObservacao] = useState('');
-  const [isDespesa, setIsDespesa] = useState(true);
+	const [dia, setDia] = useState(new Date())
+	const [valor, setValor] = useState('')
+	const [observacao, setObservacao] = useState('')
+	const [isDespesa, setIsDespesa] = useState(true)
 
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+		const valorNumerico = isDespesa ? -Math.abs(parseFloat(valor)) : Math.abs(parseFloat(valor))
+		console.log('isDespesa :>> ', isDespesa)
+		const novaDespesa = {
+			dia: dia.toLocaleDateString('pt-BR'),
+			valor: valorNumerico,
+			observacao,
+		}
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const valorNumerico = isDespesa ? -Math.abs(parseFloat(valor)) : Math.abs(parseFloat(valor));
-    console.log('isDespesa :>> ', isDespesa);
-    const novaDespesa = {
-      dia: dia.toLocaleDateString('pt-BR'),
-      valor: valorNumerico,
-      observacao,
-    };
+		try {
+			// Chame a função create do meu serviço para adicionar a nova despesa ao MongoDB
+			await despesaService.create(novaDespesa)
 
-    try {
-      // Chame a função create do meu serviço para adicionar a nova despesa ao MongoDB
-      await despesaService.create(novaDespesa);
+			onAddDespesa(novaDespesa)
+			clearForm()
+		} catch (error) {
+			console.error('Error adding despesa:', error)
+		}
+	}
 
-      onAddDespesa(novaDespesa);
-      clearForm();
-    } catch (error) {
-      console.error('Error adding despesa:', error);
-    }
-  };
+	const clearForm = () => {
+		setDia(new Date())
+		setValor('')
+		setObservacao('')
+	}
 
-  const clearForm = () => {
-    setDia(new Date());
-    setValor('');
-    setObservacao('');
-  };
+	const categoria = isDespesa ? ['Gasolina', 'Comida', 'Investimento'] : ['Salário', 'Outros']
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Dia:
-        <DatePicker
-          selected={dia}
-          onChange={(date) => setDia(date)}
-          dateFormat="dd/MM/yyyy"
-          maxDate={new Date(2024, 11, 31)}
-        />
-      </label>
-      <label>
-        <span onClick={() => setIsDespesa((prev) => !prev)}>{isDespesa ? 'Despesa:' : 'Entrada:'}</span>
-        <input type='number' value={valor} onChange={(e) => setValor(e.target.value)} />
-      </label>
-      <label>
-        Observação:
-        <input type='text' value={observacao} onChange={(e) => setObservacao(e.target.value)} />
-      </label>
-      <button type='submit'>Adicionar Despesa</button>
-    </form>
-  );
-};
+	return (
+		<form onSubmit={handleSubmit}>
+			<label>
+				Dia:
+				<DatePicker
+					selected={dia}
+					onChange={(date) => setDia(date)}
+					dateFormat='dd/MM/yyyy'
+					maxDate={new Date(2024, 11, 31)}
+				/>
+			</label>
+			<label>
+				<span onClick={() => setIsDespesa((prev) => !prev)}>
+					{isDespesa ? 'Despesa:' : 'Entrada:'}
+				</span>
+				<input type='number' value={valor} onChange={(e) => setValor(e.target.value)} />
+			</label>
+			<select>
+				{categoria.sort().map((categoria) => (
+					<option key={categoria} categoria={categoria}>
+						{categoria}
+					</option>
+				))}
+			</select>
+			<label>
+				Observação:
+				<input type='text' value={observacao} onChange={(e) => setObservacao(e.target.value)} />
+			</label>
+			<button type='submit'>Adicionar Despesa</button>
+		</form>
+	)
+}
 
-export default DespesaForm;
+export default DespesaForm
