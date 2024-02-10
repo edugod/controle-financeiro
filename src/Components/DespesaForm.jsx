@@ -7,6 +7,7 @@ const DespesaForm = ({ onAddDespesa }) => {
 	const [dia, setDia] = useState(new Date())
 	const [valor, setValor] = useState('')
 	const [observacao, setObservacao] = useState('')
+	const [categoria, setCategoria] = useState('')
 	const [isDespesa, setIsDespesa] = useState(true)
 
 	const handleSubmit = async (e) => {
@@ -17,6 +18,7 @@ const DespesaForm = ({ onAddDespesa }) => {
 			dia: dia.toLocaleDateString('pt-BR'),
 			valor: valorNumerico,
 			observacao,
+			categoria: categoria,
 		}
 
 		try {
@@ -36,8 +38,9 @@ const DespesaForm = ({ onAddDespesa }) => {
 		setObservacao('')
 	}
 
-	const categoria = isDespesa ? ['Gasolina', 'Comida', 'Investimento'] : ['Salário', 'Outros']
+	const categorias = isDespesa ? ['Gasolina', 'Comida', 'Investimento'] : ['Salário', 'Outros']
 
+  console.log(categoria)
 	return (
 		<form onSubmit={handleSubmit}>
 			<label>
@@ -55,13 +58,17 @@ const DespesaForm = ({ onAddDespesa }) => {
 				</span>
 				<input type='number' value={valor} onChange={(e) => setValor(e.target.value)} />
 			</label>
-			<select>
-				{categoria.sort().map((categoria) => (
-					<option key={categoria} categoria={categoria}>
-						{categoria}
-					</option>
-				))}
-			</select>
+			<label>
+				Categoria:
+				<select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+					<option value=''>Selecione uma categoria</option>
+					{categorias.sort().map((categoria, index) => (
+						<option key={index} value={categoria}>
+							{categoria}
+						</option>
+					))}
+				</select>
+			</label>
 			<label>
 				Observação:
 				<input type='text' value={observacao} onChange={(e) => setObservacao(e.target.value)} />
