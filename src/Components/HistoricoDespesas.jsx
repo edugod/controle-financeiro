@@ -1,6 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import despesaService from '../controllers/despesas'
+import DeleteModal from './DeleteModal'
+
+const DespesaItem = ({ despesa, onDelete }) => {
+	const handleDelete = useCallback(() => {
+		onDelete(despesa.id)
+	}, [despesa.id, onDelete])
+
+	return (
+		<li>
+			Dia: {despesa.dia} | Valor: R$ {despesa.valor.toFixed(2)} | Observação: {despesa.observacao} |
+			Categoria: {despesa.categoria} <button onClick={handleDelete}>Deletar</button>
+		</li>
+	)
+}
 
 const HistoricoDespesas = ({ despesas, setDespesas }) => {
 	const [showDeleteModal, setShowDeleteModal] = useState(false)
@@ -14,7 +28,6 @@ const HistoricoDespesas = ({ despesas, setDespesas }) => {
 	}, [mesSelecionado])
 
 	const handleDelete = async (despesaId) => {
-		// Abre o modal de confirmação
 		setShowDeleteModal(true)
 		setDeletingDespesaId(despesaId)
 	}
@@ -48,36 +61,19 @@ const HistoricoDespesas = ({ despesas, setDespesas }) => {
 				{(mesSelecionado === '00' ? despesas : despesasFiltradas)
 					.sort((a, b) => {
 						// Converta as strings 'dd/mm/yyyy' em objetos de data
-						const dateA = new Date(
-							parseInt(a.dia.split('/')[2]),
-							parseInt(a.dia.split('/')[1]) - 1,
-							parseInt(a.dia.split('/')[0])
-						)
-						const dateB = new Date(
-							parseInt(b.dia.split('/')[2]),
-							parseInt(b.dia.split('/')[1]) - 1,
-							parseInt(b.dia.split('/')[0])
-						)
+						const dateA = new Date(parseInt(a.dia.split('/')[2]) ,parseInt(a.dia.split('/')[1]) - 1, parseInt(a.dia.split('/')[0]))
+						const dateB = new Date(parseInt(b.dia.split('/')[2]), parseInt(b.dia.split('/')[1]) - 1, parseInt(b.dia.split('/')[0]))
 
 						// Compare as datas para ordenação crescente
 						return dateA - dateB
 					})
 					.map((despesa) => (
-						<li key={despesa.id}>
-							Dia: {despesa.dia} | Valor: R$ {despesa.valor.toFixed(2)} | Observação:{' '}{despesa.observacao}| Categoria:{' '}{despesa.categoria} {' '}
-							<button onClick={() => handleDelete(despesa.id)}>Deletar</button>
-						</li>
+						<DespesaItem key={despesa.id} despesa={despesa} onDelete={handleDelete} />
 					))}
 			</ul>
 
 			{/* Modal de Confirmação */}
-			{showDeleteModal && (
-				<div className='modal'>
-					<p>Tem certeza que deseja deletar?</p>
-					<button onClick={confirmDelete}>Sim</button>
-					<button onClick={cancelDelete}>Cancelar</button>
-				</div>
-			)}
+			{showDeleteModal && <DeleteModal onConfirm={confirmDelete} onCancel={cancelDelete} />}
 		</div>
 	)
 }

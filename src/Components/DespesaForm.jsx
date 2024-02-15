@@ -18,7 +18,7 @@ const DespesaForm = ({ onAddDespesa }) => {
 			dia: dia.toLocaleDateString('pt-BR'),
 			valor: valorNumerico,
 			observacao,
-			categoria: categoria,
+			categoria,
 		}
 
 		try {

@@ -3,19 +3,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setFilter } from '../reducers/filterReducer'
 
 const SaldoMensal = ({ despesas }) => {
-	const [saldo, setSaldo] = useState(0)
-	const dispatch = useDispatch()
-	const mesSelecionado = useSelector((state) => state.filter)
+	const dispatch = useDispatch();
+	const mesSelecionado = useSelector((state) => state.filter);
+	const [saldo, setSaldo] = useState(0);
 
 	const despesasFiltradas = despesas.filter((despesa) => despesa.dia.includes(`/${mesSelecionado}/`))
-
+	
 	useEffect(() => {
 		const despesasParaCalcularSaldo = mesSelecionado === '00' ? despesas : despesasFiltradas
 		const saldoTotal = despesasParaCalcularSaldo.reduce((total, despesa) => total + despesa.valor, 0)
 		setSaldo(saldoTotal)
 	}, [mesSelecionado, despesas, despesasFiltradas])
 	//essas 3 [] indicam que sempre que um deles sofrer alguma alteração
-	//irá novamente fazer a renderização
+	//irá fazer novamente uma renderização
 
 	const filtrarPorMes = (mes) => {
 		dispatch(setFilter(mes))
