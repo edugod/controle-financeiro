@@ -64,8 +64,7 @@ const HistoricoDespesas = ({ despesas, setDespesas }) => {
 					})
 					.map((despesa) => (
 						<li key={despesa.id}>
-							Dia: {despesa.dia} | Valor: R$ {despesa.valor.toFixed(2)} | Observação:{' '}
-							{despesa.observacao}
+							Dia: {despesa.dia} | Valor: R$ {despesa.valor.toFixed(2)} | Observação:{' '}{despesa.observacao}| Categoria:{' '}{despesa.categoria} {' '}
 							<button onClick={() => handleDelete(despesa.id)}>Deletar</button>
 						</li>
 					))}
