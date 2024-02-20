@@ -63,5 +63,3 @@ const Login = () => {
 }
 
 export default Login
-
-afffffffffffffffff
