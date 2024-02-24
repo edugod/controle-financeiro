@@ -28,13 +28,18 @@ const Login = () => {
 			if (success) {
 			  // Login bem-sucedido
 			  setError('');
-			  navigate('/');
+			  navigate('/home');
 			  alert('Login bem-sucedido!');
 			  // Redirecionar ou executar ações apropriadas após o login
 			} else {
 			  setError('Nome de usuário ou senha incorretos.');
 			}
 	}
+
+	const handleLogout = () => {
+		// Chama a função de logout do controller
+		loginController.logout();
+	  };
 
 	return (
 		<div>
@@ -60,6 +65,7 @@ const Login = () => {
 				</div>
 				{error && <div style={{ color: 'red' }}>{error}</div>}
 				<button type='submit'>Entrar</button>
+				<button onClick={handleLogout}>Sair</button>
 			</form>
 		</div>
 	)

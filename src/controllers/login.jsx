@@ -30,5 +30,10 @@ const login = async (username, password) => {
   }
 };
 
+const logout = async () => {
+    localStorage.clear()
+    window.alert('logout bem sucedido')
+}
+
 // Exporta a função de login para ser utilizada em outros componentes
-export default { login };
+export default { login, logout };
