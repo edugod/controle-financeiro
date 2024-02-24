@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import loginController from '../controllers/login'
 
 const Login = () => {
 	const [username, setUsername] = useState('')
@@ -7,7 +8,7 @@ const Login = () => {
 	const [error, setError] = useState('')
 
 	const navigate = useNavigate()
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault()
 
 		// Validação básica
@@ -21,16 +22,18 @@ const Login = () => {
 			return
 		}
 
-		// Autenticação simulada (substitua com sua lógica real de autenticação)
-		if (username === 'admin' && password === 'admin') {
-			// Login bem-sucedido
-			setError('')
-			navigate('/')
-			alert('Login bem-sucedido!')
-			// Redirecionar ou executar ações apropriadas após o login
-		} else {
-			setError('Nome de usuário ou senha incorretos.')
-		}
+		    // Chama a função de login do controller
+			const success = await loginController.login(username, password);
+
+			if (success) {
+			  // Login bem-sucedido
+			  setError('');
+			  navigate('/');
+			  alert('Login bem-sucedido!');
+			  // Redirecionar ou executar ações apropriadas após o login
+			} else {
+			  setError('Nome de usuário ou senha incorretos.');
+			}
 	}
 
 	return (
