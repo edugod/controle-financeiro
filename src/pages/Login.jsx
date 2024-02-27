@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import loginController from '../controllers/login'
 
-ta dificil hoje
-
 const Login = () => {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
@@ -24,24 +22,24 @@ const Login = () => {
 			return
 		}
 
-		    // Chama a função de login do controller
-			const success = await loginController.login(username, password);
+		// Chama a função de login do controller
+		const success = await loginController.login(username, password)
 
-			if (success) {
-			  // Login bem-sucedido
-			  setError('');
-			  navigate('/home');
-			  alert('Login bem-sucedido!');
-			  // Redirecionar ou executar ações apropriadas após o login
-			} else {
-			  setError('Nome de usuário ou senha incorretos.');
-			}
+		if (success) {
+			// Login bem-sucedido
+			setError('')
+			navigate('/home')
+			alert('Login bem-sucedido!')
+			// Redirecionar ou executar ações apropriadas após o login
+		} else {
+			setError('Nome de usuário ou senha incorretos.')
+		}
 	}
 
 	const handleLogout = () => {
 		// Chama a função de logout do controller
-		loginController.logout();
-	  };
+		loginController.logout()
+	}
 
 	return (
 		<div>
