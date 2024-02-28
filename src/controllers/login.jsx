@@ -12,6 +12,7 @@ const login = async (username, password) => {
 
     // Verifica se a resposta possui um token JWT
     const { token } = response.data;
+    console.log('token :>> ', response);
     if (token) {
       // Armazena o token JWT no localStorage
       localStorage.setItem('token', token);
@@ -24,7 +25,8 @@ const login = async (username, password) => {
         return false;
     }
 } catch (error) {
-    console.error('Erro ao fazer login:', error);
+    console.error('Erro ao fazer login (frontend):', error.response.data);
+    verificar isso amanhã, lembre a mensagem error está passando, mas deve ser error.response.data?
     // Retorna false se ocorrer algum erro durante o processo de login
     return false;
   }
