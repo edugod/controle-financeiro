@@ -52,7 +52,6 @@ const HistoricoDespesas = ({ despesas, setDespesas }) => {
 	}
 
 	const despesasFiltradas = despesas.filter((despesa) => despesa.dia.includes(`/${mesSelecionado}/`))
-	console.log('despesasFiltradas :>> ', despesasFiltradas)
 
 	return (
 		<div>

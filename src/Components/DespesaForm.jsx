@@ -40,7 +40,6 @@ const DespesaForm = ({ onAddDespesa }) => {
 
 	const categorias = isDespesa ? ['Gasolina', 'Comida', 'Investimento'] : ['Salário', 'Outros']
 
-  console.log(categoria)
 	return (
 		<form onSubmit={handleSubmit}>
 			<label>

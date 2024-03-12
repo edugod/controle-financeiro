@@ -20,8 +20,17 @@
 [] X. Implementação de login
 [X]     X.1 Estabelecer se deve ser uma página ou um popup
 [X]     X.2 estudar possibilidades de como fazer a autenticação de login
-[]      X.1 Estabelecer se deve ser uma página ou um popup
-[] será que isso não pode ser feito mais tarde?
+
+O QUE FALTA EU FAZER?
+[]      X.1 Implementar autenticação do usuário, usuário está on?
+Estabelecer utilizo isso por estado global redux? ou então por useContext
+Vou analisar um vídeo com useContext;
+
+[]      X.X Implementar que a despesa apareça apenas para o usuário ON
+
+FINAL
+[]      X.2 FAZER O USUÁRIO EDUARDO E SARANA
+
 
 [X] 4. Conexão com MongoDB:
 [X]     4.1 Configurar um servidor backend com Node.js e Express

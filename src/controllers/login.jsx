@@ -26,7 +26,7 @@ const login = async (username, password) => {
     }
 } catch (error) {
     console.error('Erro ao fazer login (frontend):', error.response.data);
-    verificar isso amanhã, lembre a mensagem error está passando, mas deve ser error.response.data?
+    //verificar isso amanhã, lembre a mensagem error está passando, mas deve ser error.response.data?
     // Retorna false se ocorrer algum erro durante o processo de login
     return false;
   }
