@@ -4,9 +4,9 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				primary: '#007bff', // Sua cor primária
-				secondary: '#6c757d', // Sua cor secundária
-				tertiary: '#28a745', // Sua cor terciária
+				primary: '#62B6CB', 
+				secondary: '#CDC7E5', 
+				tertiary: '#F8F7F9', 
 			},
 			fontFamily: {
 				sans: ['Roboto', 'sans-serif'], // Define a fonte padrão como Roboto

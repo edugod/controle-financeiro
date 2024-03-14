@@ -30,45 +30,56 @@ const Login = () => {
 			// Login bem-sucedido
 			setError('')
 			navigate('/')
-			alert('Login bem-sucedido!')
 			// Redirecionar ou executar ações apropriadas após o login
 		} else {
 			setError('Nome de usuário ou senha incorretos.')
 		}
 	}
 
-	const handleLogout = () => {
-		// Chama a função de logout do controller
-		loginController.logout()
-	}
+	const handleLogout = () => loginController.logout()
 
 	return (
-		<div>
-			<h2>Login</h2>
-			<form onSubmit={handleSubmit}>
-				<div>
-					<label htmlFor='username'>Nome de usuário:</label>
-					<input
-						type='text'
-						id='username'
-						value={username}
-						autoComplete='off'
-						onChange={(e) => setUsername(e.target.value)}
-					/>
-				</div>
-				<div>
-					<label htmlFor='password'>Senha:</label>
-					<input
-						type='password'
-						id='password'
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-					/>
-				</div>
-				{error && <div style={{ color: 'red' }}>{error}</div>}
-				<button type='submit'>Entrar</button>
-				<button onClick={handleLogout}>Sair</button>
-			</form>
+		<div className='flex justify-center items-center h-screen'>
+			<div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
+				<form onSubmit={handleSubmit}>
+					<div className='mb-4'>
+						<label htmlFor='username' className='block text-gray-700 text-base font-bold mb-2'>
+							Login:
+						</label>
+						<input
+							type='text'
+							id='username'
+							value={username}
+							autoComplete='off'
+							onChange={(e) => setUsername(e.target.value)}
+							className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+							placeholder='Nome de usuário'
+						/>
+					</div>
+					<div className='mb-6'>
+						<label htmlFor='password' className='block text-gray-700 text-base font-bold mb-2'>
+							Senha:
+						</label>
+						<input
+							type='password'
+							id='password'
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+							placeholder='*********'
+						/>
+					</div>
+					{error && <div className='text-red-500 mb-4'>{error}</div>}
+					<div className='flex justify-center'>
+						<button
+							type='submit'
+							className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+						>
+							Entrar
+						</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	)
 }
