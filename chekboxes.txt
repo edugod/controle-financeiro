@@ -23,8 +23,9 @@
 
 O QUE FALTA EU FAZER?
 []      X.1 Implementar autenticação do usuário, usuário está on?
-Estabelecer utilizo isso por estado global redux? ou então por useContext
+Estabelecer utilizo isso por estado global redux? ou então por useContext?
 Vou analisar um vídeo com useContext;
+[x]     X.1 Visto o vídeo e aprendido um monte, muito bom!!! mas na realidade a autenticação ficará somente na parte do '/' home
 
 []      X.X Implementar que a despesa apareça apenas para o usuário ON
 
