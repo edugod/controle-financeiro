@@ -1,3 +1,11 @@
+O que falta?
+[] Implementação de autenticação do usuário CHECK
+[] quem adicionou?
+[] filtrar a despesa por usuário
+[] estilizar.
+
+
+
 [X] 1.Configuração do Ambiente:
 [X]     1.1 Iniciar um novo projeto React com Vite
 [X]     1.2 Instalar dependências básicas
