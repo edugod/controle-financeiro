@@ -49,7 +49,7 @@ const HomePage = () => {
 
 	return (
 		<div>
-			<DespesaForm onAddDespesa={handleAddDespesa} usuario={usuario} />
+			<DespesaForm onAddDespesa={handleAddDespesa} usuario={usuario}/>
 			<SaldoMensal despesas={despesas} usuario={usuario} />
 			<HistoricoDespesas despesas={despesas} setDespesas={setDespesas} usuario={usuario} />
 		</div>
