@@ -8,6 +8,7 @@ const Login = () => {
 	const [error, setError] = useState('')
 
 	const navigate = useNavigate()
+
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
@@ -28,7 +29,7 @@ const Login = () => {
 		if (success) {
 			// Login bem-sucedido
 			setError('')
-			navigate('/home')
+			navigate('/')
 			alert('Login bem-sucedido!')
 			// Redirecionar ou executar ações apropriadas após o login
 		} else {

@@ -16,7 +16,7 @@ const login = async (username, password) => {
     if (token) {
       // Armazena o token JWT no localStorage
       localStorage.setItem('token', token);
-      console.log('login bem sucedido, do controller login')
+      console.log('login bem sucedido, do controller login => frontend')
       // Retorna true para indicar que o login foi bem-sucedido
       return true;
     } else {
