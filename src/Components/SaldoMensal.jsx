@@ -2,15 +2,19 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setFilter } from '../reducers/filterReducer'
 
-const SaldoMensal = ({ despesas }) => {
-	const dispatch = useDispatch();
-	const mesSelecionado = useSelector((state) => state.filter);
-	const [saldo, setSaldo] = useState(0);
+const SaldoMensal = ({ despesas, usuario }) => {
+	const dispatch = useDispatch()
+	const mesSelecionado = useSelector((state) => state.filter)
+	const [saldo, setSaldo] = useState(0)
 
-	const despesasFiltradas = despesas.filter((despesa) => despesa.dia.includes(`/${mesSelecionado}/`))
-	
+    // Filtrar despesas pelo ID do usuário atual
+    const despesasDoUsuario = despesas.filter((despesa) => despesa.createdBy.id === usuario)
+
+    // Filtrar despesas pelo mês selecionado
+    const despesasFiltradas = despesasDoUsuario.filter((despesa) => despesa.dia.includes(`/${mesSelecionado}/`))
+
 	useEffect(() => {
-		const despesasParaCalcularSaldo = mesSelecionado === '00' ? despesas : despesasFiltradas
+        const despesasParaCalcularSaldo = mesSelecionado === '00' ? despesasDoUsuario : despesasFiltradas
 		const saldoTotal = despesasParaCalcularSaldo.reduce((total, despesa) => total + despesa.valor, 0)
 		setSaldo(saldoTotal)
 	}, [mesSelecionado, despesas, despesasFiltradas])
@@ -27,11 +31,12 @@ const SaldoMensal = ({ despesas }) => {
 		{ value: '01', label: 'Janeiro' },
 		{ value: '02', label: 'Fevereiro' },
 		{ value: '03', label: 'Março' },
+		{ value: '04', label: 'Abril' },
 	]
 
 	return (
 		<div>
-			<h2>{mesSelecionado == '00' ? 'Saldo Anual:' : `Saldo No Mês:`}</h2>
+			<h2>{mesSelecionado == '00' ? 'Saldo Anual:' : `Saldo no Mês:`}</h2>
 			<div>
 				<select value={mesSelecionado} onChange={(e) => filtrarPorMes(e.target.value)}>
 					{meses.map(({ value, label }) => (

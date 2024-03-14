@@ -16,7 +16,7 @@ const DespesaItem = ({ despesa, onDelete }) => {
 	)
 }
 
-const HistoricoDespesas = ({ despesas, setDespesas }) => {
+const HistoricoDespesas = ({ despesas, setDespesas, usuario }) => {
 	const [showDeleteModal, setShowDeleteModal] = useState(false)
 	const [deletingDespesaId, setDeletingDespesaId] = useState(null)
 
@@ -58,10 +58,19 @@ const HistoricoDespesas = ({ despesas, setDespesas }) => {
 			<h2>Histórico de Despesas</h2>
 			<ul>
 				{(mesSelecionado === '00' ? despesas : despesasFiltradas)
+					.filter((despesa) => despesa.createdBy.id === usuario) // Filtra despesas pelo usuário atual
 					.sort((a, b) => {
 						// Converta as strings 'dd/mm/yyyy' em objetos de data
-						const dateA = new Date(parseInt(a.dia.split('/')[2]) ,parseInt(a.dia.split('/')[1]) - 1, parseInt(a.dia.split('/')[0]))
-						const dateB = new Date(parseInt(b.dia.split('/')[2]), parseInt(b.dia.split('/')[1]) - 1, parseInt(b.dia.split('/')[0]))
+						const dateA = new Date(
+							parseInt(a.dia.split('/')[2]),
+							parseInt(a.dia.split('/')[1]) - 1,
+							parseInt(a.dia.split('/')[0])
+						)
+						const dateB = new Date(
+							parseInt(b.dia.split('/')[2]),
+							parseInt(b.dia.split('/')[1]) - 1,
+							parseInt(b.dia.split('/')[0])
+						)
 
 						// Compare as datas para ordenação crescente
 						return dateA - dateB
