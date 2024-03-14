@@ -52,6 +52,7 @@ const Login = () => {
 						type='text'
 						id='username'
 						value={username}
+						autoComplete='off'
 						onChange={(e) => setUsername(e.target.value)}
 					/>
 				</div>

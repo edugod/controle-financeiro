@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import despesaService from '../controllers/despesas'
 
-const DespesaForm = ({ onAddDespesa }) => {
+const DespesaForm = ({ onAddDespesa, usuario }) => {
 	const [dia, setDia] = useState(new Date())
 	const [valor, setValor] = useState('')
 	const [observacao, setObservacao] = useState('')
@@ -19,6 +19,7 @@ const DespesaForm = ({ onAddDespesa }) => {
 			valor: valorNumerico,
 			observacao,
 			categoria,
+			createdBy: usuario,
 		}
 
 		try {

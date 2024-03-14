@@ -4,22 +4,32 @@ import DespesaForm from '../Components/DespesaForm'
 import SaldoMensal from '../Components/SaldoMensal'
 import despesaService from '../controllers/despesas'
 import { useNavigate } from 'react-router-dom'
-
+import { jwtDecode } from 'jwt-decode'
 
 const HomePage = () => {
 	const [despesas, setDespesas] = useState([])
+	const [usuario, setUsuario] = useState(null) // Estado para armazenar informações do usuário
 
-  const navigate = useNavigate()
+	const navigate = useNavigate()
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
+	useEffect(() => {
+		const token = localStorage.getItem('token')
 
-    if (!token) {
-      // Redirecionar para a página de login se o token não estiver presente
-      navigate('/login');
-    }
-  }, []);
+		if (!token) {
+			// Redirecionar para a página de login se o token não estiver presente
+			navigate('/login')
+			return // Evita executar o restante do código se não houver token
+		}
 
+		try {
+			const decoded = jwtDecode(token)
+			console.log(decoded)
+			setUsuario(decoded.userId) // Armazenar informações do usuário no estado
+		} catch (error) {
+			// Se ocorrer um erro ao decodificar o token, redirecione para a página de login
+			navigate('/login')
+		}
+	}, [])
 
 	useEffect(() => {
 		const fetchDespesas = async () => {
@@ -39,7 +49,7 @@ const HomePage = () => {
 
 	return (
 		<div>
-			<DespesaForm onAddDespesa={handleAddDespesa} />
+			<DespesaForm onAddDespesa={handleAddDespesa} usuario={usuario} />
 			<SaldoMensal despesas={despesas} />
 			<HistoricoDespesas despesas={despesas} setDespesas={setDespesas} />
 		</div>
