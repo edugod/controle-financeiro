@@ -23,10 +23,6 @@ const HistoricoDespesas = ({ despesas, setDespesas, usuario }) => {
 	// Obter o mês selecionado do Redux
 	const mesSelecionado = useSelector((state) => state.filter)
 
-	useEffect(() => {
-		console.log('Mes selecionado:', mesSelecionado)
-	}, [mesSelecionado])
-
 	const handleDelete = async (despesaId) => {
 		setShowDeleteModal(true)
 		setDeletingDespesaId(despesaId)

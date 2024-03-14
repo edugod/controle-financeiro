@@ -25,22 +25,23 @@ const HomePage = () => {
 			const decoded = jwtDecode(token)
 			console.log(decoded) //aqui ele envia um objeto
 			setUsuario(decoded.userId) // Armazenar informações do usuário no estado
-
-			// Fetch de despesas depois de definir o usuário
-			const fetchDespesas = async () => {
-				try {
-					const response = await despesaService.getAll()
-					setDespesas(response.data)
-				} catch (error) {
-					console.error('Error fetching despesas:', error)
-				}
-			}
-			fetchDespesas()
 		} catch (error) {
 			// Se ocorrer um erro ao decodificar o token, redirecione para a página de login
 			navigate('/login')
 		}
-	}, [navigate])
+	}, [])
+
+	useEffect(() => {
+		const fetchDespesas = async () => {
+			try {
+				const response = await despesaService.getAll()
+				setDespesas(response.data)
+			} catch (error) {
+				console.error('Error fetching despesas:', error)
+			}
+		}
+		fetchDespesas()
+	}, [])
 
 	const handleAddDespesa = (novaDespesa) => {
 		setDespesas((prevDespesas) => [...prevDespesas, { id: prevDespesas.length + 1, ...novaDespesa }])

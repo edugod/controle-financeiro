@@ -2,7 +2,7 @@ O que falta?
 [X] Implementação de autenticação do usuário 
 [x] Como descobrir qual usuário que está on? - instalei o pacote jwt-decode e consigo obter o id do usuário.
 [X] quem adicionou?
-[] filtrar a despesa por usuário
+[X] filtrar a despesa por usuário
 [] estilizar.
 
 
