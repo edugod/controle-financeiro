@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import despesaService from '../controllers/despesas'
 
-const DespesaForm = ({ onAddDespesa, usuario }) => {
+const DespesaForm = ({ onAddDespesa, usuario, setShowDespesaForm }) => {
 	const [dia, setDia] = useState(new Date())
 	const [valor, setValor] = useState('')
 	const [observacao, setObservacao] = useState('')
@@ -42,25 +42,35 @@ const DespesaForm = ({ onAddDespesa, usuario }) => {
 	const categorias = isDespesa ? ['Gasolina', 'Comida', 'Investimento'] : ['Salário', 'Outros']
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<label>
-				Dia:
+		<form onSubmit={handleSubmit} className='p-6'>
+			<label className='block mb-2'>
+				Dia: <br />
 				<DatePicker
 					selected={dia}
 					onChange={(date) => setDia(date)}
 					dateFormat='dd/MM/yyyy'
 					maxDate={new Date(2024, 11, 31)}
+					className='border border-gray-300 rounded-md px-2 py-1 w-full mt-2'
 				/>
 			</label>
-			<label>
+			<label className='block mb-2'>
 				<span onClick={() => setIsDespesa((prev) => !prev)}>
 					{isDespesa ? 'Despesa:' : 'Entrada:'}
 				</span>
-				<input type='number' value={valor} onChange={(e) => setValor(e.target.value)} />
+				<input
+					type='number'
+					value={valor}
+					onChange={(e) => setValor(e.target.value)}
+					className='border border-gray-300 rounded-md px-2 py-1 w-full mt-2'
+				/>
 			</label>
-			<label>
+			<label className='block mb-2'>
 				Categoria:
-				<select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+				<select
+					value={categoria}
+					onChange={(e) => setCategoria(e.target.value)}
+					className='border border-gray-300 rounded-2xl px-2 py-1 w-full mt-2'
+				>
 					<option value=''>Selecione uma categoria</option>
 					{categorias.sort().map((categoria, index) => (
 						<option key={index} value={categoria}>
@@ -69,11 +79,30 @@ const DespesaForm = ({ onAddDespesa, usuario }) => {
 					))}
 				</select>
 			</label>
-			<label>
+			<label className='block mb-4'>
 				Observação:
-				<input type='text' value={observacao} onChange={(e) => setObservacao(e.target.value)} />
+				<input
+					type='text'
+					value={observacao}
+					onChange={(e) => setObservacao(e.target.value)}
+					className='border border-gray-300 rounded-2xl px-2 py-1 w-full mt-2'
+				/>
 			</label>
-			<button type='submit'>Adicionar Despesa</button>
+			<div className='flex justify-between'>
+				<button
+					type='submit'
+					className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 mr-2'
+				>
+					Adicionar Despesa
+				</button>
+				<button
+					type='button'
+					onClick={() => setShowDespesaForm(false)}
+					className='bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4'
+				>
+					Fechar
+				</button>
+			</div>
 		</form>
 	)
 }

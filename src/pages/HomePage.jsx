@@ -46,7 +46,7 @@ const HomePage = () => {
 	}
 
 	return (
-		<div className='container bg-secondary mx-auto mt-8 px-4 py-8 rounded-2xl flex flex-col items-center'>
+		<div className='container bg-secondary mx-auto mt-8 px-4 py-8 rounded-2xl flex flex-col items-center shadow-2xl'>
 			<div className='mb-8'>
 				<SaldoMensal despesas={despesas} usuario={usuario} />
 			</div>
@@ -56,20 +56,20 @@ const HomePage = () => {
 			<div className='flex flex-col items-center'>
 				<button
 					onClick={() => setShowDespesaForm(true)}
-					className='bg-forth hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl'
+					className=' bg-forth hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl'
 				>
 					Adicionar Despesa
 				</button>
 				{showDespesaForm && (
-					<div className='fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50'>
-						<div className='bg-white shadow-2xl rounded-xl p-6'>
-							<DespesaForm onAddDespesa={handleAddDespesa} usuario={usuario} />
-							<button
-								onClick={() => setShowDespesaForm(false)}
-								className='mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'
-							>
-								Fechar
-							</button>
+					<div className='fixed inset-0 z-50 overflow-y-auto flex justify-center items-center bg-gray-500 bg-opacity-50 transition-opacity'>
+						<div className='relative bg-white rounded-2xl shadow-lg w-128 h-128'>
+							<div className='absolute top-0 right-0 -mt-4 -mr-4'></div>
+							<div className='p-6'>
+								<DespesaForm onAddDespesa={handleAddDespesa} usuario={usuario} setShowDespesaForm={setShowDespesaForm} />
+							</div>
+							<div className='p-4'>
+
+							</div>
 						</div>
 					</div>
 				)}

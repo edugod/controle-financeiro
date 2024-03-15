@@ -10,7 +10,7 @@ export default {
 				forth: 'rgba(0, 212, 255, 1)',
 			},
 			fontFamily: {
-				sans: ['Roboto', 'sans-serif'], // Define a fonte padrão como Roboto
+				sans: ['Poppins', 'sans-serif'], // Define a fonte padrão como Roboto
 			},
 		},
 	},
