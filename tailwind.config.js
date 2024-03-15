@@ -7,7 +7,7 @@ export default {
 				primary: '#62B6CB',
 				secondary: '#CDC7E5',
 				tertiary: '#fff',
-				forth: '#7DC95E',
+				forth: 'rgba(0, 212, 255, 1)',
 			},
 			fontFamily: {
 				sans: ['Roboto', 'sans-serif'], // Define a fonte padrão como Roboto

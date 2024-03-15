@@ -46,17 +46,17 @@ const HomePage = () => {
 	}
 
 	return (
-		<div className='container bg-secondary mx-auto mt-8 px-4 py-8 rounded-xl'>
+		<div className='container bg-secondary mx-auto mt-8 px-4 py-8 rounded-2xl flex flex-col items-center'>
 			<div className='mb-8'>
 				<SaldoMensal despesas={despesas} usuario={usuario} />
 			</div>
 			<div className='mb-8'>
 				<HistoricoDespesas despesas={despesas} setDespesas={setDespesas} usuario={usuario} />
 			</div>
-			<div>
+			<div className='flex flex-col items-center'>
 				<button
 					onClick={() => setShowDespesaForm(true)}
-					className='bg-forth hover:bg-blue-700 text-black font-bold py-2 px-4 rounded-xl'
+					className='bg-forth hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl'
 				>
 					Adicionar Despesa
 				</button>

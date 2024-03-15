@@ -68,8 +68,8 @@ const HistoricoDespesas = ({ despesas, setDespesas, usuario }) => {
 				<div className='fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none'>
 					<div className='absolute inset-0 bg-black opacity-50' onClick={cancelDelete}></div>
 					<div className='relative w-auto max-w-lg mx-auto my-6'>
-						<div className='relative flex flex-col w-full bg-secondary border-0 rounded-xl shadow-2xl outline-none focus:outline-none'>
-							<div className='flex items-start justify-between p-5 border-b-4 border-solid border-forth rounded-t'>
+						<div className='relative flex flex-col w-full bg-primary  border-0 rounded-xl shadow-2xl outline-none focus:outline-none'>
+							<div className='flex items-start justify-between p-5 border-b-4 border-solid border-secondary rounded-t'>
 								<h3 className='text-xl font-semibold italic '>Confirmação de exclusão</h3>
 								<button
 									className='p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none'
