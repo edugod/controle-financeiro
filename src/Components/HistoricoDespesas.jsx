@@ -4,7 +4,6 @@ import despesaService from '../controllers/despesas'
 import DeleteModal from './DeleteModal'
 import DespesaItem from './DespesaItem'
 
-
 const HistoricoDespesas = ({ despesas, setDespesas, usuario }) => {
 	const [showDeleteModal, setShowDeleteModal] = useState(false)
 	const [deletingDespesaId, setDeletingDespesaId] = useState(null)
@@ -40,36 +39,56 @@ const HistoricoDespesas = ({ despesas, setDespesas, usuario }) => {
 
 	return (
 		<div>
-		  <h2 className="text-xl font-bold mb-4">Histórico de Despesas</h2>
-		  <ul>
-			{(mesSelecionado === '00' ? despesas : despesasFiltradas)
-			  .filter((despesa) => despesa.createdBy.id === usuario) // Filtra despesas pelo usuário atual
-			  .sort((a, b) => {
-				// Converta as strings 'dd/mm/yyyy' em objetos de data
-				const dateA = new Date(
-				  parseInt(a.dia.split('/')[2]),
-				  parseInt(a.dia.split('/')[1]) - 1,
-				  parseInt(a.dia.split('/')[0])
-				);
-				const dateB = new Date(
-				  parseInt(b.dia.split('/')[2]),
-				  parseInt(b.dia.split('/')[1]) - 1,
-				  parseInt(b.dia.split('/')[0])
-				);
-	
-				// Compare as datas para ordenação crescente
-				return dateA - dateB;
-			  })
-			  .map((despesa) => (
-				<DespesaItem key={despesa.id} despesa={despesa} onDelete={handleDelete} />
-			  ))}
-		  </ul>
-	
-		  {/* Modal de Confirmação */}
-		  {showDeleteModal && <DeleteModal onConfirm={confirmDelete} onCancel={cancelDelete} />}
+			<h2 className='text-xl font-bold mb-4'>Histórico de Despesas</h2>
+			<ul>
+				{(mesSelecionado === '00' ? despesas : despesasFiltradas)
+					.filter((despesa) => despesa.createdBy.id === usuario) // Filtra despesas pelo usuário atual
+					.sort((a, b) => {
+						// Converta as strings 'dd/mm/yyyy' em objetos de data
+						const dateA = new Date(
+							parseInt(a.dia.split('/')[2]),
+							parseInt(a.dia.split('/')[1]) - 1,
+							parseInt(a.dia.split('/')[0])
+						)
+						const dateB = new Date(
+							parseInt(b.dia.split('/')[2]),
+							parseInt(b.dia.split('/')[1]) - 1,
+							parseInt(b.dia.split('/')[0])
+						)
+
+						// Compare as datas para ordenação crescente
+						return dateA - dateB
+					})
+					.map((despesa) => (
+						<DespesaItem key={despesa.id} despesa={despesa} onDelete={handleDelete} />
+					))}
+			</ul>
+
+			{showDeleteModal && (
+				<div className='fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none'>
+					<div className='absolute inset-0 bg-black opacity-50' onClick={cancelDelete}></div>
+					<div className='relative w-auto max-w-lg mx-auto my-6'>
+						<div className='relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none'>
+							<div className='flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t'>
+								<h3 className='text-xl font-semibold'>Confirmação de exclusão</h3>
+								<button
+									className='p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none'
+									onClick={() => setShowDeleteModal(false)}
+								>
+									<span className='text-black h-6 w-6 text-2xl block outline-none focus:outline-none'>
+										×
+									</span>
+								</button>
+							</div>
+							<div className='relative p-6 flex-auto'>
+								<DeleteModal onConfirm={confirmDelete} onCancel={cancelDelete} />
+							</div>
+						</div>
+					</div>
+				</div>
+			)}
 		</div>
-	  );
-	};
-	
+	)
+}
 
 export default HistoricoDespesas
