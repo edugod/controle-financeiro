@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import loginController from '../controllers/login'
 
@@ -8,6 +8,13 @@ const Login = () => {
 	const [error, setError] = useState('')
 
 	const navigate = useNavigate()
+
+	const userRef = useRef()
+
+	useEffect(() => {
+		//para colocar o foco no user quando o componente é renderizado
+		userRef.current.focus()
+	}, [])
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -40,7 +47,7 @@ const Login = () => {
 
 	return (
 		<div className='flex justify-center items-center h-screen'>
-			<div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
+			<div className='bg-white shadow-md rounded-xl px-8 pt-6 pb-8 mb-4'>
 				<form onSubmit={handleSubmit}>
 					<div className='mb-4'>
 						<label htmlFor='username' className='block text-gray-700 text-base font-bold mb-2'>
@@ -49,10 +56,11 @@ const Login = () => {
 						<input
 							type='text'
 							id='username'
+							ref={userRef}
 							value={username}
 							autoComplete='off'
 							onChange={(e) => setUsername(e.target.value)}
-							className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+							className='shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
 							placeholder='Nome de usuário'
 						/>
 					</div>
@@ -65,7 +73,7 @@ const Login = () => {
 							id='password'
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
-							className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+							className='shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
 							placeholder='*********'
 						/>
 					</div>
@@ -73,7 +81,7 @@ const Login = () => {
 					<div className='flex justify-center'>
 						<button
 							type='submit'
-							className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+							className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline'
 						>
 							Entrar
 						</button>
