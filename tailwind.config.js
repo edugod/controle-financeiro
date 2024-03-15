@@ -4,10 +4,10 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				primary: '#62B6CB', 
-				secondary: '#CDC7E5', 
-				tertiary: '#F8F7F9',
-				forth: '#EC7357'
+				primary: '#62B6CB',
+				secondary: '#CDC7E5',
+				tertiary: '#fff',
+				forth: '#7DC95E',
 			},
 			fontFamily: {
 				sans: ['Roboto', 'sans-serif'], // Define a fonte padrão como Roboto

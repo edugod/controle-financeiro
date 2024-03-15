@@ -5,20 +5,17 @@ const DespesaItem = ({ despesa, onDelete }) => {
         onDelete(despesa.id);
     }, [despesa.id, onDelete]);
 
+    const { dia, valor, observacao, categoria } = despesa;
+    console.log('valor :>> ', valor);
+
     return (
-        <li className="flex items-center justify-between py-px border-b">
+        <li onClick={handleDelete} className='flex items-center justify-between py-2 border-b cursor-pointer'>
             <div>
-                <span className="font-bold"></span> {despesa.dia} | 
-                <span className="font-bold ml-2"></span> R$ {despesa.valor.toFixed(2)} | 
-                <span className="font-bold ml-2"></span> {despesa.observacao} | 
-                <span className="font-bold ml-2"></span> {despesa.categoria}
+                <span className='font-bold ml-2'>Valor:</span> R$ {valor.toFixed(2)} |
+                <span className='font-bold'></span> {dia} |
+                <span className='font-bold ml-2'>Obs:</span> {observacao} |
+                <span className='font-bold ml-2'>Categoria:</span> {categoria}
             </div>
-            <button
-                onClick={handleDelete}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-px px-2 rounded focus:outline-none focus:shadow-outline"
-            >
-                Deletar
-            </button>
         </li>
     );
 };
