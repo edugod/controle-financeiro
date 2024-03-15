@@ -6,7 +6,8 @@ export default {
 			colors: {
 				primary: '#62B6CB', 
 				secondary: '#CDC7E5', 
-				tertiary: '#F8F7F9', 
+				tertiary: '#F8F7F9',
+				forth: '#EC7357'
 			},
 			fontFamily: {
 				sans: ['Roboto', 'sans-serif'], // Define a fonte padrão como Roboto
