@@ -62,7 +62,7 @@ const HomePage = () => {
 				</button>
 				{showDespesaForm && (
 					<div className='fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50'>
-						<div className='bg-white shadow-md rounded-xl p-6'>
+						<div className='bg-white shadow-2xl rounded-xl p-6'>
 							<DespesaForm onAddDespesa={handleAddDespesa} usuario={usuario} />
 							<button
 								onClick={() => setShowDespesaForm(false)}

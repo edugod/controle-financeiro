@@ -41,7 +41,7 @@ const SaldoMensal = ({ despesas, usuario }) => {
 			<select
 				value={mesSelecionado}
 				onChange={(e) => filtrarPorMes(e.target.value)}
-				className='block mr-4 p-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:border-primary bg-tertiary text-gray-700'
+				className='font-bold block mr-4 p-2 border border-gray-300 rounded-xl shadow-2xl focus:outline-none focus:border-primary bg-tertiary text-gray-700'
 			>
 				{meses.map(({ value, label }) => (
 					<option key={value} value={value}>
