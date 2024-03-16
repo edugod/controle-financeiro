@@ -65,7 +65,7 @@ const HomePage = () => {
 						<div className='relative bg-white rounded-2xl shadow-lg w-128 h-128'>
 							<div className='absolute top-0 right-0 -mt-4 -mr-4'></div>
 							<div className='p-6'>
-								<DespesaForm onAddDespesa={handleAddDespesa} usuario={usuario} setShowDespesaForm={setShowDespesaForm} />
+								<DespesaForm handleAddDespesa={handleAddDespesa} usuario={usuario} setShowDespesaForm={setShowDespesaForm} />
 							</div>
 							<div className='p-4'>
 

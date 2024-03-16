@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import despesaService from '../controllers/despesas'
 
-const DespesaForm = ({ onAddDespesa, usuario, setShowDespesaForm }) => {
+const DespesaForm = ({ handleAddDespesa, usuario, setShowDespesaForm }) => {
 	const [dia, setDia] = useState(new Date())
 	const [valor, setValor] = useState('')
 	const [observacao, setObservacao] = useState('')
@@ -26,7 +26,7 @@ const DespesaForm = ({ onAddDespesa, usuario, setShowDespesaForm }) => {
 			// Chame a função create do meu serviço para adicionar a nova despesa ao MongoDB
 			await despesaService.create(novaDespesa)
 
-			onAddDespesa(novaDespesa)
+			handleAddDespesa(novaDespesa)
 			clearForm()
 		} catch (error) {
 			console.error('Error adding despesa:', error)
