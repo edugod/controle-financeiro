@@ -6,7 +6,6 @@ const DespesaItem = ({ despesa, onDelete }) => {
     }, [despesa.id, onDelete]);
 
     const { dia, valor, observacao, categoria } = despesa;
-    console.log('valor :>> ', valor);
 
     return (
         <li onClick={handleDelete} className='flex items-center justify-between py-2 border-b-2 border-primary cursor-pointer'>

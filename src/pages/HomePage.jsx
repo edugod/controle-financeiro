@@ -7,12 +7,15 @@ import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 
 const HomePage = () => {
+	// Definição dos estados
 	const [despesas, setDespesas] = useState([])
 	const [usuario, setUsuario] = useState(null)
 	const [showDespesaForm, setShowDespesaForm] = useState(false)
 
+	// Hook para navegação
 	const navigate = useNavigate()
 
+	// Hook para carregar dados do usuário e despesas
 	useEffect(() => {
 		const token = localStorage.getItem('token')
 		if (!token) {
@@ -40,6 +43,7 @@ const HomePage = () => {
 		fetchDespesas()
 	}, [])
 
+	// Função para adicionar despesa
 	const handleAddDespesa = (novaDespesa) => {
 		setDespesas((prevDespesas) => [...prevDespesas, { id: prevDespesas.length + 1, ...novaDespesa }])
 		setShowDespesaForm(false)
@@ -56,7 +60,7 @@ const HomePage = () => {
 			<div className='flex flex-col items-center'>
 				<button
 					onClick={() => setShowDespesaForm(true)}
-					className=' bg-forth hover:bg-forthHover text-white font-bold py-2 px-4 rounded-2xl'
+					className='bg-forth hover:bg-forthHover text-white font-bold py-2 px-4 rounded-2xl'
 				>
 					Adicionar Despesa
 				</button>
@@ -65,11 +69,13 @@ const HomePage = () => {
 						<div className='relative bg-white rounded-2xl shadow-lg w-128 h-128'>
 							<div className='absolute top-0 right-0 -mt-4 -mr-4'></div>
 							<div className='p-6'>
-								<DespesaForm handleAddDespesa={handleAddDespesa} usuario={usuario} setShowDespesaForm={setShowDespesaForm} />
+								<DespesaForm
+									handleAddDespesa={handleAddDespesa}
+									usuario={usuario}
+									setShowDespesaForm={setShowDespesaForm}
+								/>
 							</div>
-							<div className='p-4'>
-
-							</div>
+							<div className='p-4'></div>
 						</div>
 					</div>
 				)}
