@@ -40,7 +40,7 @@ const DespesaForm = ({ handleAddDespesa, usuario, setShowDespesaForm }) => {
 		setObservacao('')
 	}
 
-	const categorias = isDespesa ? ['Gasolina', 'Comida', 'Investimento'] : ['Salário', 'Dívida', 'Outros']
+	const categorias = isDespesa ? ['Gasolina', 'Comida', 'Investimento', 'Lazer', 'Outros'] : ['Salário', 'Dívida', 'Outros']
 
 	return (
 		<form onSubmit={handleSubmit} className='p-6'>
@@ -55,7 +55,9 @@ const DespesaForm = ({ handleAddDespesa, usuario, setShowDespesaForm }) => {
 				/>
 			</label>
 			<label className='block mb-2'>
-				<span onClick={() => setIsDespesa((prev) => !prev)}>{isDespesa ? 'Saída:' : 'Entrada:'}</span>
+				<span onClick={() => setIsDespesa((prev) => !prev)}
+				className='bg-forth hover:bg-forthHover hover:focus:bg-forthHover text-tertiary font-bold px-2 mr-2 rounded-2xl'
+				>{isDespesa ? 'Saída:' : 'Entrada:'}</span>
 				<input
 					type='number'
 					value={valor}
@@ -72,7 +74,7 @@ const DespesaForm = ({ handleAddDespesa, usuario, setShowDespesaForm }) => {
 					required
 				>
 					<option>Selecione uma categoria</option>
-					{categorias.sort().map((categoria, index) => (
+					{categorias.map((categoria, index) => (
 						<option key={index} value={categoria}>
 							{categoria}
 						</option>
