@@ -50,7 +50,7 @@ const DespesaForm = ({ onAddDespesa, usuario, setShowDespesaForm }) => {
 					onChange={(date) => setDia(date)}
 					dateFormat='dd/MM/yyyy'
 					maxDate={new Date(2024, 11, 31)}
-					className='border border-gray-300 rounded-md px-2 py-1 w-full mt-2'
+					className='border border-gray-300 rounded-xl px-2 py-1 w-full mt-2'
 				/>
 			</label>
 			<label className='block mb-2'>
@@ -61,7 +61,7 @@ const DespesaForm = ({ onAddDespesa, usuario, setShowDespesaForm }) => {
 					type='number'
 					value={valor}
 					onChange={(e) => setValor(e.target.value)}
-					className='border border-gray-300 rounded-md px-2 py-1 w-full mt-2'
+					className='border border-gray-300 rounded-xl px-2 py-1 w-full mt-2'
 				/>
 			</label>
 			<label className='block mb-2'>
@@ -69,7 +69,8 @@ const DespesaForm = ({ onAddDespesa, usuario, setShowDespesaForm }) => {
 				<select
 					value={categoria}
 					onChange={(e) => setCategoria(e.target.value)}
-					className='border border-gray-300 rounded-2xl px-2 py-1 w-full mt-2'
+					className='border border-gray-300 rounded-xl px-2 py-1 w-full mt-2 appearance-none'
+					required
 				>
 					<option value=''>Selecione uma categoria</option>
 					{categorias.sort().map((categoria, index) => (
@@ -85,7 +86,7 @@ const DespesaForm = ({ onAddDespesa, usuario, setShowDespesaForm }) => {
 					type='text'
 					value={observacao}
 					onChange={(e) => setObservacao(e.target.value)}
-					className='border border-gray-300 rounded-2xl px-2 py-1 w-full mt-2'
+					className='border border-gray-300 rounded-xl px-2 py-1 w-full mt-2'
 				/>
 			</label>
 			<div className='flex justify-between'>
