@@ -69,10 +69,10 @@ const DespesaForm = ({ onAddDespesa, usuario, setShowDespesaForm }) => {
 				<select
 					value={categoria}
 					onChange={(e) => setCategoria(e.target.value)}
-					className='border border-gray-300 rounded-xl px-2 py-1 w-full mt-2 appearance-none'
+					className='bg-secondary border border-gray-300 rounded-xl px-2 py-1 w-full mt-2 appearance-none'
 					required
 				>
-					<option value=''>Selecione uma categoria</option>
+					<option>Selecione uma categoria</option>
 					{categorias.sort().map((categoria, index) => (
 						<option key={index} value={categoria}>
 							{categoria}

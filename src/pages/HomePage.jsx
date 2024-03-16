@@ -46,7 +46,7 @@ const HomePage = () => {
 	}
 
 	return (
-		<div className='container bg-secondary mx-auto mt-8 px-4 py-8 rounded-2xl flex flex-col items-center shadow-2xl'>
+		<div className='container bg-tertiary mx-auto mt-8 px-4 py-8 rounded-2xl flex flex-col items-center shadow-2xl'>
 			<div className='mb-8'>
 				<SaldoMensal despesas={despesas} usuario={usuario} />
 			</div>
@@ -56,7 +56,7 @@ const HomePage = () => {
 			<div className='flex flex-col items-center'>
 				<button
 					onClick={() => setShowDespesaForm(true)}
-					className=' bg-forth hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl'
+					className=' bg-forth hover:bg-forthHover text-white font-bold py-2 px-4 rounded-2xl'
 				>
 					Adicionar Despesa
 				</button>
