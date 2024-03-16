@@ -10,7 +10,9 @@ export default {
 				forth: 'rgba(0, 212, 255, 1)',
 				primaryHover: '#245D6B',
 				secondaryHover: '#382D62',
-				forthHover: '#00778F'
+				forthHover: '#00778F',
+				cancel: '#DE2B37',
+				cancelHover: '#B01C25'
 			},
 			fontFamily: {
 				sans: ['Poppins', 'sans-serif'], // Define a fonte padrão como Roboto

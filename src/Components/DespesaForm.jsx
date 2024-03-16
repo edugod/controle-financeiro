@@ -28,6 +28,7 @@ const DespesaForm = ({ handleAddDespesa, usuario, setShowDespesaForm }) => {
 
 			handleAddDespesa(novaDespesa)
 			clearForm()
+			location.reload()
 		} catch (error) {
 			console.error('Error adding despesa:', error)
 		}
@@ -92,14 +93,14 @@ const DespesaForm = ({ handleAddDespesa, usuario, setShowDespesaForm }) => {
 			<div className='flex justify-between'>
 				<button
 					type='submit'
-					className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 mr-2'
+					className='bg-forth hover:bg-forthHover hover:focus:bg-forthHover text-tertiary font-bold py-2 px-4 mr-2'
 				>
 					Adicionar Despesa
 				</button>
 				<button
 					type='button'
 					onClick={() => setShowDespesaForm(false)}
-					className='bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4'
+					className='bg-cancel hover:bg-cancelHover hover:focus:bg-cancelHover text-tertiary font-semibold py-2 px-4'
 				>
 					Fechar
 				</button>

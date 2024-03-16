@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 
 const HomePage = () => {
-	// Definição dos estados
 	const [despesas, setDespesas] = useState([])
 	const [usuario, setUsuario] = useState(null)
 	const [showDespesaForm, setShowDespesaForm] = useState(false)

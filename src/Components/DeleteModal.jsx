@@ -9,7 +9,7 @@ const DeleteModal = ({ onConfirm, onCancel }) => {
           Sim
         </button>
         <button
-          className="px-4 py-2 bg-red-500 text-black rounded-xl hover:bg-red-600"
+          className="px-4 py-2 font-semibold bg-cancel text-tertiary rounded-xl hover:bg-cancelHover hover:focus:bg-cancelHover"
           onClick={onCancel}
         >
           Cancelar
