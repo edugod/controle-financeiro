@@ -74,7 +74,7 @@ const HomePage = () => {
 			<div className='flex flex-col items-center'>
 				<button
 					onClick={() => setShowDespesaForm(true)}
-					className='bg-forth hover:bg-forthHover text-white font-bold py-2 px-4 rounded-2xl'
+					className='bg-forth hover:bg-forthHover text-white font-bold py-2 px-4 rounded-2xl mt-2'
 				>
 					Adicionar Despesa
 				</button>
