@@ -1,7 +1,13 @@
 import React from 'react'
 import meses from '../../utils/meses'
+import { useDispatch, useSelector } from 'react-redux'
+import { setFilter } from '../reducers/filterReducer'
 
 const TodosMeses = ({ usuario, despesas }) => {
+    const dispatch = useDispatch()
+	const mesSelecionado = useSelector((state) => state.filter)
+    //ano funcionou o onClick
+
 	// Função para calcular o total das despesas por mês para o usuário logado
 	const calcularTotalDespesasPorMes = () => {
 		const totalDespesasPorMes = {}
@@ -30,21 +36,26 @@ const TodosMeses = ({ usuario, despesas }) => {
 	// Calcular o total das despesas por mês para o usuário logado
 	const totalDespesasPorMes = calcularTotalDespesasPorMes()
 
-	return (
-		<div>
-			{meses.map(
-				({ value, label }) =>
-					totalDespesasPorMes[value] !== 0 && (
-						<div key={value}>
-							{/* Exibir o nome do mês e o total das despesas */}
-							<p>
-								{label}: {totalDespesasPorMes[value].toFixed(2)}
-							</p>
-						</div>
-					)
-			)}
-		</div>
-	)
-}
+    const filtrarPorMes = (mes) => {
+		dispatch(setFilter(mes))
+		console.log(`Escolhido o mês ${mes}`)
+	}
+
+    return (
+        <div>
+            <h2 className="text-lg font-bold mb-2">Total de Despesas por Mês</h2>
+            <div className="grid grid-cols-1 gap-4">
+                {meses.map(({ value, label }) => (
+                    totalDespesasPorMes[value] !== 0 && (
+                        <div key={value} className="flex justify-between items-center bg-gray-100 p-2 rounded-xl mb-1">
+                            <span className="font-semibold">{label}</span>
+                            <span>{totalDespesasPorMes[value].toFixed(2)}</span>
+                        </div>
+                    )
+                ))}
+            </div>
+        </div>
+    );
+};
 
 export default TodosMeses
