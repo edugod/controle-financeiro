@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import HistoricoDespesas from '../Components/HistoricoDespesas'
 import DespesaForm from '../Components/DespesaForm'
 import SaldoMensal from '../Components/SaldoMensal'
+import TodosMeses from '../Components/TodosMeses'
 import despesaService from '../controllers/despesas'
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
@@ -10,6 +12,7 @@ const HomePage = () => {
 	const [despesas, setDespesas] = useState([])
 	const [usuario, setUsuario] = useState(null)
 	const [showDespesaForm, setShowDespesaForm] = useState(false)
+	const mesSelecionado = useSelector((state) => state.filter)
 
 	// Hook para navegação
 	const navigate = useNavigate()
@@ -53,15 +56,20 @@ const HomePage = () => {
 		localStorage.removeItem('token')
 		navigate('/login')
 	}
-	
 
 	return (
 		<div className='container bg-tertiary mx-auto mt-8 px-4 py-8 rounded-2xl flex flex-col items-center shadow-2xl relative'>
 			<div className='mb-8'>
 				<SaldoMensal despesas={despesas} usuario={usuario} />
 			</div>
-			<div className='mb-8'>
-				<HistoricoDespesas despesas={despesas} setDespesas={setDespesas} usuario={usuario} />
+			<div>
+				{mesSelecionado !== '00' ? (
+					<div className='mb-8'>
+						<HistoricoDespesas despesas={despesas} setDespesas={setDespesas} usuario={usuario} />
+					</div>
+				) : (
+					<TodosMeses usuario={usuario} despesas={despesas}/>
+				)}
 			</div>
 			<div className='flex flex-col items-center'>
 				<button
