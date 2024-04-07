@@ -38,7 +38,6 @@ const TodosMeses = ({ usuario, despesas }) => {
 
     const filtrarPorMes = (mes) => {
 		dispatch(setFilter(mes))
-		console.log(`Escolhido o mês ${mes}`)
 	}
 
 	return (
