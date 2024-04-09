@@ -68,7 +68,7 @@ const HomePage = () => {
 						<HistoricoDespesas despesas={despesas} setDespesas={setDespesas} usuario={usuario} />
 					</div>
 				) : (
-					<TodosMeses usuario={usuario} despesas={despesas}/>
+					<TodosMeses usuario={usuario} despesas={despesas} />
 				)}
 			</div>
 			<div className='flex flex-col items-center'>
