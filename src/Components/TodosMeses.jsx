@@ -42,11 +42,11 @@ const TodosMeses = ({ usuario, despesas }) => {
 
 	return (
 		<div>
-			<h2 className="text-lg font-bold mb-2 min-w-48">Balanço Anual</h2>
-			<div className="grid grid-cols-1 gap-4">
+			<h2 className="text-lg font-bold mb-2 min-w-80">Histórico Meses</h2>
+			<div className="grid grid-cols-1 gap-4 ">
 				{meses.map(({ value, label }) => (
 					totalDespesasPorMes[value] !== 0 && (
-						<div key={value} className="flex justify-between items-center bg-gray-100 p-2 rounded-xl mb-1" onClick={() => filtrarPorMes(value)}>
+						<div key={value} className="flex justify-between items-center bg-gray-100 p-2 rounded-xl mb-1 shadow-xl" onClick={() => filtrarPorMes(value)}>
 							<span className="font-semibold">{label}</span>
 							<span>{totalDespesasPorMes[value].toFixed(2)}</span>
 						</div>

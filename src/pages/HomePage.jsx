@@ -58,7 +58,7 @@ const HomePage = () => {
 	}
 
 	return (
-		<div className='container mx-auto bg-tertiary  mt-8 px-4 py-8 rounded-2xl flex flex-col items-center shadow-2xl relative'>
+		<div className='container mx-auto bg-tertiary  mt-8 px-4 py-8 rounded-2xl flex flex-col items-center shadow-2xl relative max-w-[800px]'>
 			<div className='mb-8'>
 				<SaldoMensal despesas={despesas} usuario={usuario} />
 			</div>
@@ -96,7 +96,7 @@ const HomePage = () => {
 			</div>
 			<button
 				onClick={handleLogout}
-				className='bg-cancel hover:bg-cancelHover text-sm text-tertiary py-1 px-1 rounded-2xl absolute bottom-4 right-4'
+				className='bg-cancel hover:bg-cancelHover text-sm text-tertiary py-2 px-2 rounded-2xl absolute bottom-4 right-4'
 			>
 				Logout
 			</button>
