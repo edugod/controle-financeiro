@@ -3,12 +3,10 @@ import { useSelector } from 'react-redux'
 import despesaService from '../controllers/despesas'
 import DeleteModal from './DeleteModal'
 import DespesaItem from './DespesaItem'
-import Modal from './Modal'
 
 const HistoricoDespesas = ({ despesas, setDespesas, usuario }) => {
 	const [showModal, setShowModal] = useState(false)
 	const [deletingDespesaId, setDeletingDespesaId] = useState(null)
-	const [openModal, setOpenModal] = useState(false)
 
 	// Obter o mês selecionado do Redux
 	const mesSelecionado = useSelector((state) => state.filter)
