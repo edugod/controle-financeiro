@@ -14,8 +14,8 @@ const DespesaItem = ({ despesa, onDelete }) => {
             <div className='flex'>
                 <div className='min-w-16'>{dia}/{mes}</div>
                 <div className='min-w-24'>R$ {valor.toFixed(2)}</div>
-                <div className='min-w-24'>{categoria}</div>
-                <div className='flex-grow'>{observacao}</div>
+                <div className='ms-4 min-w-24'>{categoria}</div>
+                <div className='ms-4 flex-grow'>{observacao}</div>
             </div>
         </li>
     );
