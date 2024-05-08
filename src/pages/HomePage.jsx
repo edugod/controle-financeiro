@@ -7,6 +7,8 @@ import TodosMeses from '../Components/TodosMeses'
 import despesaService from '../controllers/despesas'
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
+import { useDispatch } from 'react-redux'
+import { setFilter } from '../reducers/filterReducer'
 
 const HomePage = () => {
 	const [despesas, setDespesas] = useState([])
@@ -16,6 +18,8 @@ const HomePage = () => {
 
 	// Hook para navegação
 	const navigate = useNavigate()
+
+	const dispatch = useDispatch()
 
 	// Hook para carregar dados do usuário e despesas
 	useEffect(() => {
@@ -94,6 +98,15 @@ const HomePage = () => {
 					</div>
 				)}
 			</div>
+			{mesSelecionado !== '00' && (
+				<button
+				onClick={() => dispatch(setFilter('00'))}
+				className='bg-primary hover:bg-primaryHover text-sm text-tertiary py-2 px-2 rounded-2xl absolute bottom-4 left-4'
+				>
+					Voltar
+				</button>
+			)}
+
 			<button
 				onClick={handleLogout}
 				className='bg-cancel hover:bg-cancelHover text-sm text-tertiary py-2 px-2 rounded-2xl absolute bottom-4 right-4'
