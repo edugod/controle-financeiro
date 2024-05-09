@@ -62,7 +62,7 @@ const HomePage = () => {
 	}
 
 	return (
-		<div className='container mx-auto bg-tertiary  mt-8 px-4 py-8 rounded-2xl flex flex-col items-center shadow-2xl relative max-w-[800px]'>
+		<div className='container mx-auto bg-tertiary  my-8 px-4 py-8 rounded-2xl flex flex-col items-center shadow-2xl relative max-w-[800px]'>
 			<div className='mb-8'>
 				<SaldoMensal despesas={despesas} usuario={usuario} />
 			</div>

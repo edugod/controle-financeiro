@@ -56,10 +56,10 @@ FINAL
 [x]     5.2 Atualização do gerenciamento de estado para refletir os dados do backend
 
 [ ] 6. Estilização e Layout:
-[ ]     6.1 Adição de estilos CSS
-[ ]     6.2 Utilização de bibliotecas de estilos, se necessário
+[x]     6.1 Adição de estilos CSS
+[x]     6.2 Utilização de bibliotecas de estilos, se necessário
 [ ]     6.3 Garantir que o layout seja responsivo
-tirar a porra da seta no valor
+[x]     6.4 Tirar a porra da seta no valor
  
 [ ] 7. Autenticação e Autorização:
 [ ]     7.1 Implementação de um sistema de login
